@@ -8,20 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		BE5DC4D320C1FC3100BE617A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */; };
-		BE5DC4D520C1FC3100BE617A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4D420C1FC3100BE617A /* ViewController.swift */; };
 		BE5DC4D820C1FC3100BE617A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4D620C1FC3100BE617A /* Main.storyboard */; };
 		BE5DC4DA20C1FC3300BE617A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4D920C1FC3300BE617A /* Assets.xcassets */; };
 		BE5DC4DD20C1FC3300BE617A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4DB20C1FC3300BE617A /* LaunchScreen.storyboard */; };
+		BE5DC4E820C200A100BE617A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5DC4E720C200A100BE617A /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BE5DC4CF20C1FC3100BE617A /* MythicalMonsters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MythicalMonsters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE5DC4D420C1FC3100BE617A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE5DC4D720C1FC3100BE617A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE5DC4D920C1FC3300BE617A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE5DC4DC20C1FC3300BE617A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE5DC4DE20C1FC3300BE617A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE5DC4E520C2009400BE617A /* MythicalMonsters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MythicalMonsters.entitlements; sourceTree = "<group>"; };
+		BE5DC4E720C200A100BE617A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE5DC4E820C200A100BE617A /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +42,7 @@
 			children = (
 				BE5DC4D120C1FC3100BE617A /* MythicalMonsters */,
 				BE5DC4D020C1FC3100BE617A /* Products */,
+				BE5DC4E620C200A100BE617A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +57,30 @@
 		BE5DC4D120C1FC3100BE617A /* MythicalMonsters */ = {
 			isa = PBXGroup;
 			children = (
-				BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */,
-				BE5DC4D420C1FC3100BE617A /* ViewController.swift */,
+				BE5DC4E520C2009400BE617A /* MythicalMonsters.entitlements */,
 				BE5DC4D620C1FC3100BE617A /* Main.storyboard */,
-				BE5DC4D920C1FC3300BE617A /* Assets.xcassets */,
-				BE5DC4DB20C1FC3300BE617A /* LaunchScreen.storyboard */,
-				BE5DC4DE20C1FC3300BE617A /* Info.plist */,
+				BE5DC4E420C1FDC200BE617A /* Resources */,
 			);
 			path = MythicalMonsters;
+			sourceTree = "<group>";
+		};
+		BE5DC4E420C1FDC200BE617A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE5DC4DE20C1FC3300BE617A /* Info.plist */,
+				BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */,
+				BE5DC4D920C1FC3300BE617A /* Assets.xcassets */,
+				BE5DC4DB20C1FC3300BE617A /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BE5DC4E620C200A100BE617A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE5DC4E720C200A100BE617A /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +115,14 @@
 				TargetAttributes = {
 					BE5DC4CE20C1FC3100BE617A = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -135,7 +162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE5DC4D520C1FC3100BE617A /* ViewController.swift in Sources */,
 				BE5DC4D320C1FC3100BE617A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,9 +306,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MythicalMonsters/MythicalMonsters.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XUF99SR6PQ;
-				INFOPLIST_FILE = MythicalMonsters/Info.plist;
+				INFOPLIST_FILE = MythicalMonsters/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,9 +325,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MythicalMonsters/MythicalMonsters.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XUF99SR6PQ;
-				INFOPLIST_FILE = MythicalMonsters/Info.plist;
+				INFOPLIST_FILE = MythicalMonsters/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
