@@ -14,6 +14,8 @@
 		BE5DC4E820C200A100BE617A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5DC4E720C200A100BE617A /* CloudKit.framework */; };
 		BE5DC4EE20C202E600BE617A /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4ED20C202E600BE617A /* CloudKitManager.swift */; };
 		BE5DC4F020C2033A00BE617A /* MythicalMonsters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4EF20C2033A00BE617A /* MythicalMonsters.swift */; };
+		BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */; };
+		BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F320C2F19100BE617A /* MonstersController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		BE5DC4E720C200A100BE617A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		BE5DC4ED20C202E600BE617A /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		BE5DC4EF20C2033A00BE617A /* MythicalMonsters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonsters.swift; sourceTree = "<group>"; };
+		BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonsterListTableViewController.swift; sourceTree = "<group>"; };
+		BE5DC4F320C2F19100BE617A /* MonstersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonstersController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 		BE5DC4EA20C2028300BE617A /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BE5DC4F320C2F19100BE617A /* MonstersController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 		BE5DC4EB20C2029200BE617A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -201,8 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE5DC4EE20C202E600BE617A /* CloudKitManager.swift in Sources */,
+				BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */,
 				BE5DC4F020C2033A00BE617A /* MythicalMonsters.swift in Sources */,
 				BE5DC4D320C1FC3100BE617A /* AppDelegate.swift in Sources */,
+				BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

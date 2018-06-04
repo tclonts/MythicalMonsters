@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Mythical Monsters-->
         <scene sceneID="5sO-fJ-Xb8">
             <objects>
                 <tableViewController id="4Qg-Dw-dYM" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                             <outlet property="delegate" destination="4Qg-Dw-dYM" id="vu1-kH-uqu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cbl-QC-vnD"/>
+                    <navigationItem key="navigationItem" title="Mythical Monsters" id="cbl-QC-vnD"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4k8-ts-1Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
