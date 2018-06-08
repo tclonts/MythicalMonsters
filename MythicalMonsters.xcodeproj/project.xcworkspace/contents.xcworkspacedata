@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MythicalMonsters.xcodeproj">
+      location = "self:/Users/tylerclonts/Projects/MythicalMonsters/MythicalMonsters.xcodeproj">
    </FileRef>
 </Workspace>

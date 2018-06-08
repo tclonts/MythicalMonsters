@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CloudKit
 
 class MonstersController {
@@ -14,41 +15,50 @@ class MonstersController {
     static let shared = MonstersController()
     let publicDB = CKContainer.default().publicCloudDatabase
     
-    var mythicalMonsters: [MythicalMonsters] = []
+    var mythicalMonster: [MythicalMonster] = []
     
     init() {
         loadFromPersistentStore()
     }
+    
     // Create
     
+    func createMonster(monsterImage: UIImage?, name: String, origin: String, description: String, Region: String) {
+        guard let monsterImage = monsterImage else { return }
+        guard let data = UIImageJPEGRepresentation(monsterImage, 0.8) else { return }
+        
+        let newMonster = MythicalMonster(name: name, origin: origin, description: description, region: Region, monsterImage: data)
+        saveToPersistentStore()
+    }
+
     // Delete
     
     // Update
     
     // Fetch from CloudKit
     func loadFromPersistentStore() {
-        CloudKitManager.shared.fetchRecordsOf(type: MythicalMonsters.typeKey, database: publicDB) { (records, error) in
+        CloudKitManager.shared.fetchRecordsOf(type: MythicalMonster.typeKey, database: publicDB) { (records, error) in
             if let error = error {
                 print("Error fetching recipes from cloudkit: \(error.localizedDescription)")
             } else {
                 print("Success fetching recipes from cloudkit")
             }
             guard let records = records else { return }
-            let monsters = records.compactMap{MythicalMonsters(cloudKitRecord: $0)}
-            self.mythicalMonsters = monsters
+            let monsters = records.compactMap{MythicalMonster(cloudKitRecord: $0)}
+            self.mythicalMonster = monsters
             
         }
     }
     
     // Save to Cloudkit
     func saveToPersistentStore() {
-        let monsterRecords = mythicalMonsters.map({$0.cloudKitRecord})
+        let monsterRecords = mythicalMonster.map({$0.cloudKitRecord})
         
         CloudKitManager.shared.saveRecordsToCloudKit(record: monsterRecords, database: publicDB, perRecordCompletion: nil) { (_, _, error) in
             if let error = error {
-                print("Error saving recipes to cloudkit: \(error.localizedDescription)")
+                print("Error saving monster to cloudkit: \(error.localizedDescription)")
             } else {
-                print("Success saving recipes to cloudkit")
+                print("Success saving monster to cloudkit")
             }
         }
     }

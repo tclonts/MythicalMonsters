@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE2070E220C88FB2008B4A91 /* AddMonsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */; };
+		BE2070E420C8912C008B4A91 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2070E320C8912C008B4A91 /* ImagePickerHelper.swift */; };
 		BE5DC4D320C1FC3100BE617A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */; };
 		BE5DC4D820C1FC3100BE617A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4D620C1FC3100BE617A /* Main.storyboard */; };
 		BE5DC4DA20C1FC3300BE617A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4D920C1FC3300BE617A /* Assets.xcassets */; };
 		BE5DC4DD20C1FC3300BE617A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4DB20C1FC3300BE617A /* LaunchScreen.storyboard */; };
 		BE5DC4E820C200A100BE617A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5DC4E720C200A100BE617A /* CloudKit.framework */; };
 		BE5DC4EE20C202E600BE617A /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4ED20C202E600BE617A /* CloudKitManager.swift */; };
-		BE5DC4F020C2033A00BE617A /* MythicalMonsters.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4EF20C2033A00BE617A /* MythicalMonsters.swift */; };
+		BE5DC4F020C2033A00BE617A /* MythicalMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */; };
 		BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */; };
 		BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F320C2F19100BE617A /* MonstersController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMonsterViewController.swift; sourceTree = "<group>"; };
+		BE2070E320C8912C008B4A91 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		BE5DC4CF20C1FC3100BE617A /* MythicalMonsters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MythicalMonsters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE5DC4D720C1FC3100BE617A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -28,7 +32,7 @@
 		BE5DC4E520C2009400BE617A /* MythicalMonsters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MythicalMonsters.entitlements; sourceTree = "<group>"; };
 		BE5DC4E720C200A100BE617A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		BE5DC4ED20C202E600BE617A /* CloudKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
-		BE5DC4EF20C2033A00BE617A /* MythicalMonsters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonsters.swift; sourceTree = "<group>"; };
+		BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonster.swift; sourceTree = "<group>"; };
 		BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonsterListTableViewController.swift; sourceTree = "<group>"; };
 		BE5DC4F320C2F19100BE617A /* MonstersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonstersController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,7 +102,7 @@
 		BE5DC4E920C2027500BE617A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BE5DC4EF20C2033A00BE617A /* MythicalMonsters.swift */,
+				BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */,
+				BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				BE5DC4ED20C202E600BE617A /* CloudKitManager.swift */,
+				BE2070E320C8912C008B4A91 /* ImagePickerHelper.swift */,
 			);
 			path = CloudKitManager;
 			sourceTree = "<group>";
@@ -208,9 +214,11 @@
 			files = (
 				BE5DC4EE20C202E600BE617A /* CloudKitManager.swift in Sources */,
 				BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */,
-				BE5DC4F020C2033A00BE617A /* MythicalMonsters.swift in Sources */,
+				BE5DC4F020C2033A00BE617A /* MythicalMonster.swift in Sources */,
 				BE5DC4D320C1FC3100BE617A /* AppDelegate.swift in Sources */,
+				BE2070E420C8912C008B4A91 /* ImagePickerHelper.swift in Sources */,
 				BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */,
+				BE2070E220C88FB2008B4A91 /* AddMonsterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

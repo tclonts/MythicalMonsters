@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yZu-Vc-gqc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,13 +13,13 @@
         <!--Mythical Monsters-->
         <scene sceneID="5sO-fJ-Xb8">
             <objects>
-                <tableViewController id="4Qg-Dw-dYM" sceneMemberID="viewController">
+                <tableViewController id="4Qg-Dw-dYM" customClass="MythicalMonsterListTableViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Iy-k3-1Fn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="1tB-eV-aCx">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="104" id="1tB-eV-aCx">
                                 <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1tB-eV-aCx" id="SF2-XZ-hE0">
@@ -58,26 +58,118 @@
                             <outlet property="delegate" destination="4Qg-Dw-dYM" id="vu1-kH-uqu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Mythical Monsters" id="cbl-QC-vnD"/>
+                    <navigationItem key="navigationItem" title="Mythical Monsters" id="cbl-QC-vnD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vf4-JT-aFY">
+                            <connections>
+                                <action selector="addMonsterButtonTapped:" destination="4Qg-Dw-dYM" id="nAO-NK-2nV"/>
+                                <segue destination="5f2-Ky-Je0" kind="show" id="JUj-xG-tld"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4k8-ts-1Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="780" y="169.56521739130437"/>
         </scene>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="vjj-Kc-TMc">
             <objects>
-                <viewController id="5f2-Ky-Je0" sceneMemberID="viewController">
+                <viewController id="5f2-Ky-Je0" customClass="AddMonsterViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZXi-JF-CJl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eV0-Qk-qGL">
+                                <rect key="frame" x="37" y="214.5" width="300" height="302"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-yj-LBi">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+                                        <color key="backgroundColor" red="0.9152866005897522" green="0.24655312299728394" blue="0.20107686519622803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="fqe-jo-xNs"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hOK-8h-136" appends="YES" id="gXT-DY-nOF"/>
+                                        </connections>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U4q-43-XmT">
+                                        <rect key="frame" x="0.0" y="158" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="nDK-iC-DYc"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Origin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oae-WF-Hyg">
+                                        <rect key="frame" x="0.0" y="196" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="mCN-Hp-su1"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Origin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vRs-3p-Q2a">
+                                        <rect key="frame" x="0.0" y="234" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="AbN-3Q-0jh"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Region" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDb-Ht-hRs">
+                                        <rect key="frame" x="0.0" y="272" width="300" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="YkG-gF-mLy"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="U4q-43-XmT" firstAttribute="width" secondItem="eV0-Qk-qGL" secondAttribute="width" id="9ST-58-HxN"/>
+                                    <constraint firstItem="nDb-Ht-hRs" firstAttribute="width" secondItem="eV0-Qk-qGL" secondAttribute="width" id="EIQ-dY-wnK"/>
+                                    <constraint firstItem="vRs-3p-Q2a" firstAttribute="width" secondItem="eV0-Qk-qGL" secondAttribute="width" id="J26-zI-qoD"/>
+                                    <constraint firstItem="oae-WF-Hyg" firstAttribute="width" secondItem="eV0-Qk-qGL" secondAttribute="width" id="PM4-9m-6AJ"/>
+                                    <constraint firstAttribute="width" constant="300" id="iCb-Y3-luu"/>
+                                    <constraint firstItem="e3t-yj-LBi" firstAttribute="width" secondItem="eV0-Qk-qGL" secondAttribute="width" id="nOp-sa-wAf"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eV0-Qk-qGL" firstAttribute="centerY" secondItem="gHI-XP-XFF" secondAttribute="centerY" id="5MS-ym-HgJ"/>
+                            <constraint firstItem="eV0-Qk-qGL" firstAttribute="centerX" secondItem="gHI-XP-XFF" secondAttribute="centerX" id="Nct-U9-7oF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gHI-XP-XFF"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Vvw-0F-TJa">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="bWv-Vh-BQw">
+                            <connections>
+                                <action selector="saveMonsterButtonTapped:" destination="5f2-Ky-Je0" id="YP5-rA-PjZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="vRs-3p-Q2a" id="XGO-Vk-E0l"/>
+                        <outlet property="monsterImageView" destination="e3t-yj-LBi" id="bO1-ka-AtU"/>
+                        <outlet property="monsterNameTextField" destination="U4q-43-XmT" id="GXs-pd-5iX"/>
+                        <outlet property="originTextField" destination="oae-WF-Hyg" id="4w5-HV-OpL"/>
+                        <outlet property="regionTextField" destination="nDb-Ht-hRs" id="BL4-d7-lat"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxI-2R-Ylr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hOK-8h-136">
+                    <connections>
+                        <action selector="monsterImagePIckerTapped:" destination="5f2-Ky-Je0" id="QB8-Bc-TMb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1719" y="175"/>
+            <point key="canvasLocation" x="1807" y="170"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tpk-nC-3s9">
