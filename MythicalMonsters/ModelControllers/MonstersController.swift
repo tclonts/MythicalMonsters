@@ -14,8 +14,15 @@ class MonstersController {
     
     static let shared = MonstersController()
     let publicDB = CKContainer.default().publicCloudDatabase
+    let tableVCReloadNotification = Notification.Name("reloadTVC")
     
-    var mythicalMonster: [MythicalMonster] = []
+    var mythicalMonster: [MythicalMonster] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: self.tableVCReloadNotification, object: nil)
+            }
+        }
+    }
     
     init() {
         loadFromPersistentStore()
@@ -28,6 +35,7 @@ class MonstersController {
         guard let data = UIImageJPEGRepresentation(monsterImage, 0.8) else { return }
         
         let newMonster = MythicalMonster(name: name, origin: origin, description: description, region: Region, monsterImage: data)
+        mythicalMonster.append(newMonster)
         saveToPersistentStore()
     }
 
@@ -60,6 +68,7 @@ class MonstersController {
             } else {
                 print("Success saving monster to cloudkit")
             }
+        
         }
     }
 }

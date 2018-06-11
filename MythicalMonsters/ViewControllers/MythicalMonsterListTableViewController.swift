@@ -13,6 +13,13 @@ class MythicalMonsterListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
+        self.tableView.reloadData()
+    }
+  
+    // Function for reloading tableview
+    @objc func reloadCVC() {
+        self.tableView?.reloadData()
     }
 
     @IBAction func addMonsterButtonTapped(_ sender: UIBarButtonItem) {
