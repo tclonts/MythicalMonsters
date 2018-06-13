@@ -18,6 +18,7 @@
 		BE5DC4F020C2033A00BE617A /* MythicalMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */; };
 		BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */; };
 		BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F320C2F19100BE617A /* MonstersController.swift */; };
+		BECEAEEA20D0BB8B00C8EF21 /* MonsterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonster.swift; sourceTree = "<group>"; };
 		BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonsterListTableViewController.swift; sourceTree = "<group>"; };
 		BE5DC4F320C2F19100BE617A /* MonstersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonstersController.swift; sourceTree = "<group>"; };
+		BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */,
 				BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */,
+				BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BECEAEEA20D0BB8B00C8EF21 /* MonsterTableViewCell.swift in Sources */,
 				BE5DC4EE20C202E600BE617A /* CloudKitManager.swift in Sources */,
 				BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */,
 				BE5DC4F020C2033A00BE617A /* MythicalMonster.swift in Sources */,

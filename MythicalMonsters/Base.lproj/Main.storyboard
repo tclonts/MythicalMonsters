@@ -19,25 +19,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="104" id="1tB-eV-aCx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="104"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="136" id="1tB-eV-aCx" customClass="MonsterTableViewCell" customModule="MythicalMonsters" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="136"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1tB-eV-aCx" id="SF2-XZ-hE0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="135.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSA-PQ-voD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Monster Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-8A-xbR">
-                                            <rect key="frame" x="16" y="62" width="113" height="21"/>
+                                            <rect key="frame" x="197" y="88" width="113" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Origins)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp3-vN-cTa">
-                                            <rect key="frame" x="16" y="82" width="50" height="15"/>
+                                            <rect key="frame" x="228" y="110" width="50" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -45,12 +45,17 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="lSA-PQ-voD" secondAttribute="bottom" constant="-0.5" id="I14-fa-kJg"/>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="top" secondItem="SF2-XZ-hE0" secondAttribute="top" id="JUw-Fh-i97"/>
-                                        <constraint firstAttribute="trailing" secondItem="lSA-PQ-voD" secondAttribute="trailing" id="k4C-xu-R1h"/>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="leading" secondItem="SF2-XZ-hE0" secondAttribute="leading" id="mug-cE-Imn"/>
+                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="centerX" secondItem="SF2-XZ-hE0" secondAttribute="centerX" id="3v8-pS-ztZ"/>
+                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="height" secondItem="SF2-XZ-hE0" secondAttribute="height" id="Jzh-kb-bOK"/>
+                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="width" secondItem="SF2-XZ-hE0" secondAttribute="width" id="Qnj-AN-dJ0"/>
+                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="centerY" secondItem="SF2-XZ-hE0" secondAttribute="centerY" id="v8a-YN-Zws"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="monsterImageView" destination="lSA-PQ-voD" id="Cd4-cm-gEo"/>
+                                    <outlet property="monsterNameLabel" destination="eou-8A-xbR" id="bki-Il-0jL"/>
+                                    <outlet property="monsterOriginsLabel" destination="Dp3-vN-cTa" id="7K1-wN-Gr2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

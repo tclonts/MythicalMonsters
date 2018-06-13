@@ -14,7 +14,7 @@ class MythicalMonsterListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
-        self.tableView.reloadData()
+        
     }
   
     // Function for reloading tableview
@@ -29,21 +29,21 @@ class MythicalMonsterListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
    
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return MonstersController.shared.mythicalMonster.count
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 136
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath) as? MonsterTableViewCell else { return UITableViewCell() }
         let monster = MonstersController.shared.mythicalMonster[indexPath.row]
-        let monsterImage = UIImage(data: monster.monsterImage!)
+        cell.monster = monster
         
-        cell.textLabel?.text = monster.name
-        cell.detailTextLabel?.text = monster.origin
-        cell.imageView?.image = monsterImage
         
         return cell
     }
