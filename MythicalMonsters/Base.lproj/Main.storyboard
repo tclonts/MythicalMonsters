@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
+        <array key="SFCompactText-Regular.otf">
+            <string>SFCompactText-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Mythical Monsters-->
         <scene sceneID="5sO-fJ-Xb8">
@@ -19,42 +27,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="136" id="1tB-eV-aCx" customClass="MonsterTableViewCell" customModule="MythicalMonsters" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="136"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="200" id="1tB-eV-aCx" customClass="MonsterTableViewCell" customModule="MythicalMonsters" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1tB-eV-aCx" id="SF2-XZ-hE0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="135.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSA-PQ-voD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Monster Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-8A-xbR">
-                                            <rect key="frame" x="197" y="88" width="113" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Origins)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp3-vN-cTa">
-                                            <rect key="frame" x="228" y="110" width="50" height="15"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-FH-F49">
+                                            <rect key="frame" x="16" y="131" width="167" height="54"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monster Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-8A-xbR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="30"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="25"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Origins)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp3-vN-cTa">
+                                                    <rect key="frame" x="0.0" y="30" width="167" height="24"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Dp3-vN-cTa" firstAttribute="width" secondItem="ZWK-FH-F49" secondAttribute="width" id="0Pg-Bp-Moi"/>
+                                                <constraint firstItem="eou-8A-xbR" firstAttribute="width" secondItem="ZWK-FH-F49" secondAttribute="width" id="URt-dI-A8U"/>
+                                            </constraints>
+                                        </stackView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="centerX" secondItem="SF2-XZ-hE0" secondAttribute="centerX" id="3v8-pS-ztZ"/>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="height" secondItem="SF2-XZ-hE0" secondAttribute="height" id="Jzh-kb-bOK"/>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="width" secondItem="SF2-XZ-hE0" secondAttribute="width" id="Qnj-AN-dJ0"/>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="centerY" secondItem="SF2-XZ-hE0" secondAttribute="centerY" id="v8a-YN-Zws"/>
-                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="lSA-PQ-voD" firstAttribute="width" secondItem="1tB-eV-aCx" secondAttribute="width" id="DhN-lS-hiJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZWK-FH-F49" secondAttribute="bottom" constant="15" id="MSO-d3-efd"/>
+                                    <constraint firstItem="lSA-PQ-voD" firstAttribute="height" secondItem="1tB-eV-aCx" secondAttribute="height" id="OI7-Xk-fJD"/>
+                                    <constraint firstItem="lSA-PQ-voD" firstAttribute="centerY" secondItem="1tB-eV-aCx" secondAttribute="centerY" id="ebP-bc-jfj"/>
+                                    <constraint firstItem="ZWK-FH-F49" firstAttribute="leading" secondItem="1tB-eV-aCx" secondAttribute="leading" constant="16" id="pov-zs-dw7"/>
+                                    <constraint firstItem="lSA-PQ-voD" firstAttribute="centerX" secondItem="1tB-eV-aCx" secondAttribute="centerX" id="tH4-I6-DWq"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="monsterImageView" destination="lSA-PQ-voD" id="Cd4-cm-gEo"/>
                                     <outlet property="monsterNameLabel" destination="eou-8A-xbR" id="bki-Il-0jL"/>
                                     <outlet property="monsterOriginsLabel" destination="Dp3-vN-cTa" id="7K1-wN-Gr2"/>
+                                    <segue destination="O82-e9-rq1" kind="show" identifier="toMonsterDetail" id="piF-d5-zkW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -76,7 +94,7 @@
             </objects>
             <point key="canvasLocation" x="780" y="169.56521739130437"/>
         </scene>
-        <!--Title-->
+        <!--Add New Monster-->
         <scene sceneID="vjj-Kc-TMc">
             <objects>
                 <viewController id="5f2-Ky-Je0" customClass="AddMonsterViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
@@ -85,21 +103,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eV0-Qk-qGL">
-                                <rect key="frame" x="37" y="214.5" width="300" height="302"/>
+                                <rect key="frame" x="37" y="189.5" width="300" height="352"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-yj-LBi">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                                         <color key="backgroundColor" red="0.9152866005897522" green="0.24655312299728394" blue="0.20107686519622803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="fqe-jo-xNs"/>
+                                            <constraint firstAttribute="height" constant="200" id="DIv-Ey-JQc"/>
                                         </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="hOK-8h-136" appends="YES" id="gXT-DY-nOF"/>
                                         </connections>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U4q-43-XmT">
-                                        <rect key="frame" x="0.0" y="158" width="300" height="30"/>
+                                        <rect key="frame" x="0.0" y="208" width="300" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="nDK-iC-DYc"/>
                                         </constraints>
@@ -108,7 +126,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Origin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oae-WF-Hyg">
-                                        <rect key="frame" x="0.0" y="196" width="300" height="30"/>
+                                        <rect key="frame" x="0.0" y="246" width="300" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="mCN-Hp-su1"/>
                                         </constraints>
@@ -117,7 +135,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Origin" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vRs-3p-Q2a">
-                                        <rect key="frame" x="0.0" y="234" width="300" height="30"/>
+                                        <rect key="frame" x="0.0" y="284" width="300" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="AbN-3Q-0jh"/>
                                         </constraints>
@@ -126,7 +144,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Region" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDb-Ht-hRs">
-                                        <rect key="frame" x="0.0" y="272" width="300" height="30"/>
+                                        <rect key="frame" x="0.0" y="322" width="300" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="YkG-gF-mLy"/>
                                         </constraints>
@@ -152,7 +170,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gHI-XP-XFF"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Vvw-0F-TJa">
+                    <navigationItem key="navigationItem" title="Add New Monster" id="Vvw-0F-TJa">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="bWv-Vh-BQw">
                             <connections>
                                 <action selector="saveMonsterButtonTapped:" destination="5f2-Ky-Je0" id="YP5-rA-PjZ"/>
@@ -174,7 +192,94 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1807" y="170"/>
+            <point key="canvasLocation" x="1900" y="-136"/>
+        </scene>
+        <!--Monster Detail View Controller-->
+        <scene sceneID="tTq-aI-pfW">
+            <objects>
+                <viewController id="O82-e9-rq1" customClass="MonsterDetailViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VI1-PQ-vlU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y8n-OR-NmS">
+                                <rect key="frame" x="37" y="275" width="300" height="377"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFT-l4-PQh">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="31.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31.5" id="F4U-pG-RnT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="26"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ix5-ja-Llr">
+                                        <rect key="frame" x="0.0" y="39.5" width="300" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="HWw-ht-Wtv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqh-TM-tFY">
+                                        <rect key="frame" x="0.0" y="71.5" width="300" height="19.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19.5" id="Xxi-km-k6w"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pic-T3-uW5">
+                                        <rect key="frame" x="0.0" y="99" width="300" height="278"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="278" id="eA2-QM-tsY"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Ix5-ja-Llr" firstAttribute="width" secondItem="Y8n-OR-NmS" secondAttribute="width" id="jff-ZD-gHc"/>
+                                    <constraint firstItem="qFT-l4-PQh" firstAttribute="width" secondItem="Y8n-OR-NmS" secondAttribute="width" id="kx8-t1-9Kj"/>
+                                    <constraint firstItem="Pic-T3-uW5" firstAttribute="width" secondItem="Y8n-OR-NmS" secondAttribute="width" id="wMd-Mn-kJh"/>
+                                    <constraint firstItem="oqh-TM-tFY" firstAttribute="width" secondItem="Y8n-OR-NmS" secondAttribute="width" id="xXw-L6-cea"/>
+                                </constraints>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6yL-Ta-AWW">
+                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="CHQ-E5-bdY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Y8n-OR-NmS" firstAttribute="top" secondItem="6yL-Ta-AWW" secondAttribute="bottom" constant="11" id="7qV-9u-Tum"/>
+                            <constraint firstItem="ad8-Iu-hGE" firstAttribute="trailing" secondItem="6yL-Ta-AWW" secondAttribute="trailing" id="CKI-8h-ZsY"/>
+                            <constraint firstItem="6yL-Ta-AWW" firstAttribute="top" secondItem="ad8-Iu-hGE" secondAttribute="top" id="D6F-YW-cru"/>
+                            <constraint firstItem="Y8n-OR-NmS" firstAttribute="centerX" secondItem="ad8-Iu-hGE" secondAttribute="centerX" id="Uv7-sZ-m7W"/>
+                            <constraint firstItem="ad8-Iu-hGE" firstAttribute="trailing" secondItem="Y8n-OR-NmS" secondAttribute="trailing" constant="38" id="Y7n-Cb-BB6"/>
+                            <constraint firstItem="Y8n-OR-NmS" firstAttribute="leading" secondItem="ad8-Iu-hGE" secondAttribute="leading" constant="37" id="bPh-ZY-TNZ"/>
+                            <constraint firstItem="6yL-Ta-AWW" firstAttribute="leading" secondItem="ad8-Iu-hGE" secondAttribute="leading" id="xqD-0a-buq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ad8-Iu-hGE"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="Pic-T3-uW5" id="XHC-na-Clw"/>
+                        <outlet property="monsterImageView" destination="6yL-Ta-AWW" id="CR3-QF-tWb"/>
+                        <outlet property="nameLabel" destination="qFT-l4-PQh" id="lqG-Pf-15b"/>
+                        <outlet property="originLabel" destination="Ix5-ja-Llr" id="rre-rr-INb"/>
+                        <outlet property="regionLabel" destination="oqh-TM-tFY" id="CtV-eD-zvy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rcu-Q2-j0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="532.98350824587715"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tpk-nC-3s9">

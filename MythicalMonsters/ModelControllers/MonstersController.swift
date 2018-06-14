@@ -16,10 +16,12 @@ class MonstersController {
     let publicDB = CKContainer.default().publicCloudDatabase
     let tableVCReloadNotification = Notification.Name("reloadTVC")
     
+    var filteredMonsters = [MythicalMonster]()
     var mythicalMonster: [MythicalMonster] = [] {
         didSet {
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: self.tableVCReloadNotification, object: nil)
+//                self.mythicalMonster.sort{ $0.name < $1.name}
             }
         }
     }
@@ -52,8 +54,9 @@ class MonstersController {
                 print("Success fetching recipes from cloudkit")
             }
             guard let records = records else { return }
-            let monsters = records.compactMap{MythicalMonster(cloudKitRecord: $0)}
-            self.mythicalMonster = monsters
+            var monsters = records.compactMap{MythicalMonster(cloudKitRecord: $0)}
+            let sortedMonstersArray = monsters.sorted (by:{ $0.name < $1.name })
+            self.mythicalMonster = sortedMonstersArray
             
         }
     }

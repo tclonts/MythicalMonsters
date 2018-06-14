@@ -16,7 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+
+        configureStatusBar()
+//        configureNavigationBar()
+        
         return true
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -41,6 +47,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // MARK: - Convenience
+    
+//    let gray = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+    
+//    func configureNavigationBar() {
+//        UINavigationBar.appearance().isTranslucent = false
+//        UINavigationBar.appearance().isOpaque = true
+//        UINavigationBar.appearance().barTintColor = gray
+//        UINavigationBar.appearance().tintColor = UIColor.white
+//        let attrs = [
+//            NSAttributedStringKey.foregroundColor: UIColor.white,
+//            NSAttributedStringKey.font: UIFont(name: "SFCompactText-Regular", size: 20)!
+//        ]
+//
+//        UINavigationBar.appearance().titleTextAttributes = attrs
+//    }
+    
+    func configureStatusBar() {
+        UIApplication.shared.statusBarStyle = .lightContent
+//        setStatusBarBackgroundColor(gray)
+    }
+    
+//    func setStatusBarBackgroundColor(_ color: UIColor) {
+//
+//        guard let statusBar = (UIApplication.shared.value(forKey: "statusBarWindow") as AnyObject).value(forKey: "statusBar") as? UIView else {
+//            return
+//        }
+//
+//        statusBar.backgroundColor = color
+//    }
 
 }
 

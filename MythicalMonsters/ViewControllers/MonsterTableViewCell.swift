@@ -14,6 +14,7 @@ class MonsterTableViewCell: UITableViewCell {
     @IBOutlet weak var monsterNameLabel: UILabel!
     @IBOutlet weak var monsterOriginsLabel: UILabel!
     
+    var link: MythicalMonsterListTableViewController?
     
     var monster: MythicalMonster? {
         didSet {

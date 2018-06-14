@@ -8,13 +8,25 @@
 
 import UIKit
 
-class MythicalMonsterListTableViewController: UITableViewController {
+class MythicalMonsterListTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+
+//    @IBOutlet weak var searchBar: UISearchBar!
+
+//    var resultsController = UITableViewController()
+    let searchController = UISearchController(searchResultsController: nil)
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+//        searchController = UISearchController(searchResultsController: self.resultsController)
+
+//        self.resultsController.tableView.dataSource = self
+//        self.resultsController.tableView.delegate = self
+        definesPresentationContext = true
+        setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
-        
     }
   
     // Function for reloading tableview
@@ -26,72 +38,92 @@ class MythicalMonsterListTableViewController: UITableViewController {
         
     }
     
+    // MARK: - SearchBar Functions and Setup
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//
+//        filterContent(searchText: self.searchBar.text!)
+//    }
+//
+//    func filterContent(searchText: String) {
+//            MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
+//                let monsterName = monster.name
+//                return (monsterName.lowercased().contains(searchText.lowercased()))
+//            }
+//            tableView.reloadData()
+//        }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+                    MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
+                        let monsterName = monster.name
+                        return (monsterName.lowercased().contains(searchController.searchBar.text!.lowercased()))
+                    }
+                    self.tableView.reloadData()
+                }
+
+    
+    func setupNavBar() {
+        
+        self.searchController.searchResultsUpdater = self
+        self.searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search monsters by name"
+        navigationItem.searchController = searchController
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.isOpaque = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.barTintColor = ColorHelper.shared.gray
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+    
+    }
     // MARK: - Table view data source
 
    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return MonstersController.shared.mythicalMonster.count
+        
+            if searchController.searchBar.text != "" {
+                return MonstersController.shared.filteredMonsters.count
+            } else {
+                return MonstersController.shared.mythicalMonster.count
+            }
+
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 136
+        return 200
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath) as? MonsterTableViewCell else { return UITableViewCell() }
-        let monster = MonstersController.shared.mythicalMonster[indexPath.row]
-        cell.monster = monster
         
+//        let monster = MonstersController.shared.mythicalMonster[indexPath.row]
+//        cell.monster = monster
+        cell.link = self
+        if searchController.searchBar.text != "" {
+            let filteredMonsters = MonstersController.shared.filteredMonsters[indexPath.row]
+            cell.monster = filteredMonsters
+        } else {
+            let monsters = MonstersController.shared.mythicalMonster[indexPath.row]
+            cell.monster = monsters
+           
+        }
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMonsterDetail" {
+            if let destinationVC = segue.destination as? MonsterDetailViewController,
+            let indexPath = tableView.indexPathForSelectedRow?.row {
+            let monster = MonstersController.shared.mythicalMonster[indexPath]
+            destinationVC.monster = monster
+            }
+        }
+    }
  
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   
 }
