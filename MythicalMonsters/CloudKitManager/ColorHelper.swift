@@ -8,10 +8,16 @@
 
 import UIKit
 
-class ColorHelper {
+extension UIColor {
     
-    static let shared = ColorHelper()
+    static let mmDarkBrown = UIColor(red: 40.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
     
-    let gray = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
-
+    static let mmDarkGray = UIColor(red: 123.0/255.0, green: 123.0/255.0, blue: 123.0/255.0, alpha: 1.0)
+    
+    static let mmKhaki = UIColor(red: 120.0/255.0, green: 125.0/255.0, blue: 98.0/255.0, alpha: 1.0)
+    
+    static let mmWhiteIce = UIColor(red: 219.0/255.0, green: 225.0/255.0, blue: 231.0/255.0, alpha: 1.0)
+    
+    static let mmDeepBlue = UIColor(red: 63.0/255.0, green: 92.0/255.0, blue: 125.0/255.0, alpha: 1.0)
+    
 }

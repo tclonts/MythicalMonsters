@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C8199257C8813E8ED05CBBF /* Pods_MythicalMonsters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F08A29E7096F4E5196961C1 /* Pods_MythicalMonsters.framework */; };
 		BE2070E220C88FB2008B4A91 /* AddMonsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */; };
 		BE2070E420C8912C008B4A91 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2070E320C8912C008B4A91 /* ImagePickerHelper.swift */; };
 		BE2272C020D2D4190020164D /* MonsterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2272BF20D2D4190020164D /* MonsterDetailViewController.swift */; };
@@ -46,6 +47,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B581C49F5B154B2A520B042 /* Pods-MythicalMonsters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MythicalMonsters.release.xcconfig"; path = "Pods/Target Support Files/Pods-MythicalMonsters/Pods-MythicalMonsters.release.xcconfig"; sourceTree = "<group>"; };
+		8F08A29E7096F4E5196961C1 /* Pods_MythicalMonsters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MythicalMonsters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2948A9DA219A83BD637352C /* Pods-MythicalMonsters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MythicalMonsters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MythicalMonsters/Pods-MythicalMonsters.debug.xcconfig"; sourceTree = "<group>"; };
 		BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMonsterViewController.swift; sourceTree = "<group>"; };
 		BE2070E320C8912C008B4A91 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		BE2272BF20D2D4190020164D /* MonsterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterDetailViewController.swift; sourceTree = "<group>"; };
@@ -92,18 +96,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE5DC4E820C200A100BE617A /* CloudKit.framework in Frameworks */,
+				4C8199257C8813E8ED05CBBF /* Pods_MythicalMonsters.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A973DD4A0DD3043E36740B01 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2948A9DA219A83BD637352C /* Pods-MythicalMonsters.debug.xcconfig */,
+				7B581C49F5B154B2A520B042 /* Pods-MythicalMonsters.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BE5DC4C620C1FC3100BE617A = {
 			isa = PBXGroup;
 			children = (
 				BE5DC4D120C1FC3100BE617A /* MythicalMonsters */,
 				BE5DC4D020C1FC3100BE617A /* Products */,
 				BE5DC4E620C200A100BE617A /* Frameworks */,
+				A973DD4A0DD3043E36740B01 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				BE5DC4E720C200A100BE617A /* CloudKit.framework */,
+				8F08A29E7096F4E5196961C1 /* Pods_MythicalMonsters.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,9 +237,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE5DC4E120C1FC3300BE617A /* Build configuration list for PBXNativeTarget "MythicalMonsters" */;
 			buildPhases = (
+				1F865F972A92B787B854BE68 /* [CP] Check Pods Manifest.lock */,
 				BE5DC4CB20C1FC3100BE617A /* Sources */,
 				BE5DC4CC20C1FC3100BE617A /* Frameworks */,
 				BE5DC4CD20C1FC3100BE617A /* Resources */,
+				E7FB73484EFBC611584A33B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -309,6 +327,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F865F972A92B787B854BE68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MythicalMonsters-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7FB73484EFBC611584A33B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MythicalMonsters/Pods-MythicalMonsters-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MythicalMonsters/Pods-MythicalMonsters-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE5DC4CB20C1FC3100BE617A /* Sources */ = {
@@ -466,16 +523,14 @@
 		};
 		BE5DC4E220C1FC3300BE617A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2948A9DA219A83BD637352C /* Pods-MythicalMonsters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MythicalMonsters/MythicalMonsters.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XUF99SR6PQ;
 				INFOPLIST_FILE = MythicalMonsters/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TylerClonts.MythicalMonsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -485,16 +540,14 @@
 		};
 		BE5DC4E320C1FC3300BE617A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B581C49F5B154B2A520B042 /* Pods-MythicalMonsters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MythicalMonsters/MythicalMonsters.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XUF99SR6PQ;
 				INFOPLIST_FILE = MythicalMonsters/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TylerClonts.MythicalMonsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
