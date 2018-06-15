@@ -10,24 +10,17 @@ import UIKit
 
 class MythicalMonsterListTableViewController: UITableViewController, UISearchResultsUpdating {
     
-
-//    @IBOutlet weak var searchBar: UISearchBar!
-
-//    var resultsController = UITableViewController()
     let searchController = UISearchController(searchResultsController: nil)
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-//        searchController = UISearchController(searchResultsController: self.resultsController)
-
-//        self.resultsController.tableView.dataSource = self
-//        self.resultsController.tableView.delegate = self
         definesPresentationContext = true
         setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
     }
+
   
     // Function for reloading tableview
     @objc func reloadCVC() {
@@ -37,20 +30,7 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
     @IBAction func addMonsterButtonTapped(_ sender: UIBarButtonItem) {
         
     }
-    
-    // MARK: - SearchBar Functions and Setup
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        filterContent(searchText: self.searchBar.text!)
-//    }
-//
-//    func filterContent(searchText: String) {
-//            MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
-//                let monsterName = monster.name
-//                return (monsterName.lowercased().contains(searchText.lowercased()))
-//            }
-//            tableView.reloadData()
-//        }
+
     
     func updateSearchResults(for searchController: UISearchController) {
                     MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
@@ -65,17 +45,60 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         
         self.searchController.searchResultsUpdater = self
         self.searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search monsters by name"
-        navigationItem.searchController = searchController
+
+        searchController.searchBar.tintColor = UIColor.mmWhiteIce
+//        searchController.searchBar.placeholder = "Search monsters by name"
+
         
+     
+        if #available(iOS 11.0, *) {
+            
+            if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+                if let backgroundview = textfield.subviews.first {
+                    
+                   
+                    // Background color
+//                    searchController.searchBar.didMoveToSuperview()
+                    backgroundview.backgroundColor = UIColor.mmDeepBlue
+                    backgroundview.removeFromSuperview()
+                    
+                   
+                    
+                    
+                    
+                  
+                    
+                    // Rounded corner
+                    backgroundview.layer.borderWidth = 1.0
+                   backgroundview.layer.borderColor = UIColor.mmWhiteIce.cgColor
+                    // Rounded corner
+                    backgroundview.layer.cornerRadius = 10
+                    backgroundview.clipsToBounds = true
+                    
+                }
+            }
+        
+          
+        }
+        
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.mmWhiteIce]
+        
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search monsters by name...", attributes: [NSAttributedStringKey.foregroundColor: UIColor.mmWhiteIce])
+
+
+
+
+//        searchController.searchBar.searchBarStyle = .minimal
+        navigationItem.searchController = searchController
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.isOpaque = true
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.navigationBar.barTintColor = ColorHelper.shared.gray
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.barTintColor = UIColor.mmDeepBlue
+        navigationController?.navigationBar.tintColor = UIColor.mmWhiteIce
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]
     
     }
     // MARK: - Table view data source

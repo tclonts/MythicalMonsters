@@ -20,4 +20,5 @@ extension UIColor {
     
     static let mmDeepBlue = UIColor(red: 63.0/255.0, green: 92.0/255.0, blue: 125.0/255.0, alpha: 1.0)
     
+    static let mmRealBlue = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
 }
