@@ -25,12 +25,12 @@ class AddMonsterViewController: UIViewController {
         
         descriptionTextView.isScrollEnabled = true
         descriptionTextView.layer.cornerRadius = 5
-        descriptionTextView.layer.borderColor = UIColor.black.cgColor
-        descriptionTextView.layer.borderWidth = 1.0
-        descriptionTextView.textColor = UIColor.mmWhiteIce
+        descriptionTextView.layer.borderColor = UIColor.mmKhaki.cgColor
+        descriptionTextView.layer.borderWidth = 2.0
+        scrollView.backgroundColor = UIColor.mmDarkGray
         
-//        descriptionTextView.text = "Monster desription..."
-//        monsterNameTextField.text = "Name..."
+    
+        
         
         monsterNameTextField.delegate = self
         originTextField.delegate = self
@@ -54,16 +54,12 @@ class AddMonsterViewController: UIViewController {
         
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x != 0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
-    
-    
+    // MARK: - Properties
     let imagePicker = UIImagePickerController()
     var monster: MythicalMonster?
 
+    
+    // MARK: -Actions
     @IBAction func monsterImagePIckerTapped(_ sender: UITapGestureRecognizer) {
         addMonsterImage()
     }
@@ -87,6 +83,7 @@ class AddMonsterViewController: UIViewController {
         
      MonstersController.shared.createMonster(monsterImage: image, name: monsterName, origin: origin, description: description, Region: region)
     }
+    
     // Simple Alert
     func presentSimpleAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -94,15 +91,16 @@ class AddMonsterViewController: UIViewController {
         alert.addAction(dismissAction)
         self.present(alert, animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // ScrollView function
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
     }
-    */
+
+    
+    
 
 }
 
@@ -124,7 +122,7 @@ extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {
 
         if descriptionTextView.textColor == UIColor.mmWhiteIce {
             descriptionTextView.text = nil
-            descriptionTextView.textColor = UIColor.black
+            descriptionTextView.textColor = UIColor.mmDarkBrown
         }
 
         if (textView.text == "Monster description...")   {
@@ -142,7 +140,7 @@ extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.textColor == UIColor.mmWhiteIce {
             textField.text = nil
-            textField.textColor = UIColor.black
+            textField.textColor = UIColor.mmDarkBrown
             if (textField.text == "Name...")   {
                 textField.text = ""
             }

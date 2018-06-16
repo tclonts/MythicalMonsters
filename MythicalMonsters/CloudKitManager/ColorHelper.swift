@@ -18,7 +18,5 @@ extension UIColor {
     
     static let mmWhiteIce = UIColor(red: 219.0/255.0, green: 225.0/255.0, blue: 231.0/255.0, alpha: 1.0)
     
-    static let mmDeepBlue = UIColor(red: 63.0/255.0, green: 92.0/255.0, blue: 125.0/255.0, alpha: 1.0)
-    
-    static let mmRealBlue = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+    static let mmDeepBlue = UIColor(red: 63.0/255.0, green: 92.0/255.0, blue: 125.0/255.0, alpha: 1.0)    
 }
