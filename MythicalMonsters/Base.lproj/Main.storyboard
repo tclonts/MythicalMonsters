@@ -209,6 +209,7 @@
                         <outlet property="originTextField" destination="oae-WF-Hyg" id="4w5-HV-OpL"/>
                         <outlet property="regionTextField" destination="nDb-Ht-hRs" id="BL4-d7-lat"/>
                         <outlet property="scrollView" destination="upf-2C-QtP" id="Cbn-rm-K2D"/>
+                        <segue destination="yZu-Vc-gqc" kind="showDetail" identifier="backToTV" id="44Y-74-prt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxI-2R-Ylr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -256,26 +257,26 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ix5-ja-Llr">
-                                                                <rect key="frame" x="75" y="0.0" width="45" height="128"/>
+                                                                <rect key="frame" x="75.5" y="0.0" width="43" height="128"/>
                                                                 <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc2-1o-QeO">
-                                                                <rect key="frame" x="144.5" y="0.0" width="1" height="128"/>
+                                                                <rect key="frame" x="142.5" y="0.0" width="1" height="128"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="1" id="D8a-E2-XvW"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRd-7N-uJa">
-                                                                <rect key="frame" x="169.5" y="0.0" width="57.5" height="128"/>
+                                                                <rect key="frame" x="168" y="0.0" width="57.5" height="128"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqh-TM-tFY">
-                                                                <rect key="frame" x="251" y="0.0" width="49" height="128"/>
+                                                                <rect key="frame" x="249.5" y="0.0" width="50.5" height="128"/>
                                                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>

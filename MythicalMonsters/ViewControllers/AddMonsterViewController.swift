@@ -31,11 +31,14 @@ class AddMonsterViewController: UIViewController {
         
     
         
-        
         monsterNameTextField.delegate = self
         originTextField.delegate = self
         regionTextField.delegate = self
         descriptionTextView.delegate = self
+        
+        monsterNameTextField.autocapitalizationType = .words
+        originTextField.autocapitalizationType = .words
+        regionTextField.autocapitalizationType = .words
         
         textViewDidBeginEditing(descriptionTextView)
         textViewDidEndEditing(descriptionTextView)
@@ -82,6 +85,18 @@ class AddMonsterViewController: UIViewController {
         
         
      MonstersController.shared.createMonster(monsterImage: image, name: monsterName, origin: origin, description: description, Region: region)
+        
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Success", message: "Monster Added!", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+                self.performSegue(withIdentifier: "backToTV", sender: self)
+            }
+            
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+            print("Success Saving")
+        }
     }
     
     // Simple Alert
@@ -164,6 +179,15 @@ extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {
             regionTextField.textColor = UIColor.mmWhiteIce
         }
     }
-    
+    // Texfields can only be numbers for the number sections
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let characterSet = CharacterSet.letters
+        
+        if string.rangeOfCharacter(from: characterSet.inverted) != nil {
+            return false
+        }
+        return true
+    }
 }
 
