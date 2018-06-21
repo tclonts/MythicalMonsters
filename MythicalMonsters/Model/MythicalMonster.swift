@@ -34,7 +34,7 @@ class MythicalMonster {
     }
     
     // Initializer
-    init(name: String, origin: String, description: String, region: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "WolfPaths"))) {
+    init(name: String, origin: String, description: String, region: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "MysticalMonstersLogo-1"))) {
         self.name = name
         self.origin = origin
         self.description = description

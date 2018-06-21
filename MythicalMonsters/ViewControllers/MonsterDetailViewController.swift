@@ -19,6 +19,7 @@ class MonsterDetailViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewTwo: UIView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()

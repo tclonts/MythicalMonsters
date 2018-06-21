@@ -68,7 +68,7 @@ class AddMonsterViewController: UIViewController {
     }
     
     @IBAction func saveMonsterButtonTapped(_ sender: UIBarButtonItem) {
-        if (monsterNameTextField.text?.isEmpty)! || (originTextField.text?.isEmpty)! || (descriptionTextView.text?.isEmpty)! || (regionTextField.text?.isEmpty)! {
+        if (monsterNameTextField.text?.isEmpty)! || (originTextField.text?.isEmpty)! || (descriptionTextView.text?.isEmpty)! || (regionTextField.text?.isEmpty)! || monsterNameTextField.text  == "Name..." || originTextField.text == "Origin..." || regionTextField.text == "Region..." || descriptionTextView.text == "Monster description..." {
             //display alert message
             DispatchQueue.main.async {
                 self.presentSimpleAlert(title: "oops", message: "all textfields required")
@@ -113,10 +113,6 @@ class AddMonsterViewController: UIViewController {
             scrollView.contentOffset.x = 0
         }
     }
-
-    
-    
-
 }
 
 extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {

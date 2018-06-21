@@ -63,11 +63,6 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
                     backgroundview.removeFromSuperview()
                     
                    
-                    
-                    
-                    
-                  
-                    
                     // Rounded corner
                     backgroundview.layer.borderWidth = 1.0
                    backgroundview.layer.borderColor = UIColor.mmWhiteIce.cgColor

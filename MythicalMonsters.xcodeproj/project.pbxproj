@@ -21,6 +21,9 @@
 		BE5DC4F020C2033A00BE617A /* MythicalMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */; };
 		BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */; };
 		BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5DC4F320C2F19100BE617A /* MonstersController.swift */; };
+		BEC8A2D520D9D76200608A9F /* MonstersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC8A2D420D9D76200608A9F /* MonstersViewController.swift */; };
+		BEC8A2D720DB038800608A9F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC8A2D620DB038800608A9F /* CustomView.swift */; };
+		BEC8A2D920DC277900608A9F /* MonsterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC8A2D820DC277900608A9F /* MonsterCollectionViewCell.swift */; };
 		BECEAEEA20D0BB8B00C8EF21 /* MonsterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */; };
 		BECEAEF120D1B7C500C8EF21 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE5DC4DE20C1FC3300BE617A /* Info.plist */; };
 		BECEAF0C20D1B8F000C8EF21 /* SFCompactDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = BECEAEF720D1B8F000C8EF21 /* SFCompactDisplay-Heavy.otf */; };
@@ -66,6 +69,9 @@
 		BE5DC4EF20C2033A00BE617A /* MythicalMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonster.swift; sourceTree = "<group>"; };
 		BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythicalMonsterListTableViewController.swift; sourceTree = "<group>"; };
 		BE5DC4F320C2F19100BE617A /* MonstersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonstersController.swift; sourceTree = "<group>"; };
+		BEC8A2D420D9D76200608A9F /* MonstersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonstersViewController.swift; sourceTree = "<group>"; };
+		BEC8A2D620DB038800608A9F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		BEC8A2D820DC277900608A9F /* MonsterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterCollectionViewCell.swift; sourceTree = "<group>"; };
 		BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterTableViewCell.swift; sourceTree = "<group>"; };
 		BECEAEF720D1B8F000C8EF21 /* SFCompactDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Heavy.otf"; sourceTree = "<group>"; };
 		BECEAEF820D1B8F000C8EF21 /* SFCompactText-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactText-Medium.otf"; sourceTree = "<group>"; };
@@ -188,6 +194,9 @@
 				BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */,
 				BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */,
 				BE2272BF20D2D4190020164D /* MonsterDetailViewController.swift */,
+				BEC8A2D420D9D76200608A9F /* MonstersViewController.swift */,
+				BEC8A2D820DC277900608A9F /* MonsterCollectionViewCell.swift */,
+				BEC8A2D620DB038800608A9F /* CustomView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -377,9 +386,12 @@
 				BECEAEEA20D0BB8B00C8EF21 /* MonsterTableViewCell.swift in Sources */,
 				BE5DC4EE20C202E600BE617A /* CloudKitManager.swift in Sources */,
 				BE5DC4F220C20AB400BE617A /* MythicalMonsterListTableViewController.swift in Sources */,
+				BEC8A2D920DC277900608A9F /* MonsterCollectionViewCell.swift in Sources */,
 				BE5DC4F020C2033A00BE617A /* MythicalMonster.swift in Sources */,
+				BEC8A2D520D9D76200608A9F /* MonstersViewController.swift in Sources */,
 				BE5DC4D320C1FC3100BE617A /* AppDelegate.swift in Sources */,
 				BE2070E420C8912C008B4A91 /* ImagePickerHelper.swift in Sources */,
+				BEC8A2D720DB038800608A9F /* CustomView.swift in Sources */,
 				BE5DC4F420C2F19100BE617A /* MonstersController.swift in Sources */,
 				BE2070E220C88FB2008B4A91 /* AddMonsterViewController.swift in Sources */,
 			);
@@ -530,7 +542,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XUF99SR6PQ;
 				INFOPLIST_FILE = MythicalMonsters/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TylerClonts.MythicalMonsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -547,7 +562,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XUF99SR6PQ;
 				INFOPLIST_FILE = MythicalMonsters/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TylerClonts.MythicalMonsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
