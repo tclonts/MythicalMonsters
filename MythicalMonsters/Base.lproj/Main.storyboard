@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Mythical Monsters-->
+        <!--Mythical Monster List Table View Controller-->
         <scene sceneID="5sO-fJ-Xb8">
             <objects>
                 <tableViewController id="4Qg-Dw-dYM" customClass="MythicalMonsterListTableViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,22 +37,23 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSA-PQ-voD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-FH-F49">
+                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-FH-F49">
                                             <rect key="frame" x="16" y="131" width="167" height="54"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monster Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-8A-xbR">
                                                     <rect key="frame" x="0.0" y="0.0" width="167" height="30"/>
                                                     <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="25"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.15686274509803921" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Origins)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp3-vN-cTa">
                                                     <rect key="frame" x="0.0" y="30" width="167" height="24"/>
                                                     <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="Dp3-vN-cTa" firstAttribute="width" secondItem="ZWK-FH-F49" secondAttribute="width" id="0Pg-Bp-Moi"/>
                                                 <constraint firstItem="eou-8A-xbR" firstAttribute="width" secondItem="ZWK-FH-F49" secondAttribute="width" id="URt-dI-A8U"/>
@@ -81,7 +82,7 @@
                             <outlet property="delegate" destination="4Qg-Dw-dYM" id="vu1-kH-uqu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Mythical Monsters" id="cbl-QC-vnD">
+                    <navigationItem key="navigationItem" id="cbl-QC-vnD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vf4-JT-aFY">
                             <connections>
                                 <action selector="addMonsterButtonTapped:" destination="4Qg-Dw-dYM" id="nAO-NK-2nV"/>

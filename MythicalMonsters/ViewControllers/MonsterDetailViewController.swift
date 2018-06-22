@@ -37,6 +37,24 @@ class MonsterDetailViewController: UIViewController {
         
         contentViewTwo.backgroundColor = UIColor.mmDarkBrown
         contentView.backgroundColor = UIColor.mmDarkGray
+        
+//        let titleImageView = UIImageView(image: #imageLiteral(resourceName: "MysticalMonstersLogo-1"))
+//        titleImageView.frame = CGRect(x: -10, y: 0, width: 60, height: 60)
+//        titleImageView.contentMode = .scaleAspectFit
+//        navigationItem.titleView = titleImageView
+        //create a new button
+        let button = UIButton.init(type: .custom)
+        //set image for button
+        button.setImage(UIImage(named: "MonsterIcon2"), for: .normal)
+        //add function for button
+        button.addTarget(self, action: "fbButtonPressed", for: .touchUpInside)
+        //set frame
+        button.frame = CGRect(x: -10, y: 0, width: 53, height: 51)
+        let barButton = UIBarButtonItem(customView: button)
+        
+        //assign button to navigationbar
+        self.navigationItem.rightBarButtonItem = barButton
+        navigationItem.title = "Monster Details"
     }
 
     var monster: MythicalMonster?
@@ -46,6 +64,8 @@ class MonsterDetailViewController: UIViewController {
         
         guard let monsterImage = UIImage(data: monster.monsterImage!) else { return }
         monsterImageView.image = monsterImage
+//        monsterImageView.contentMode = .scaleToFill
+//        monsterImageView.clipsToBounds = true
         nameLabel.text = monster.name
         originLabel.text = monster.origin
         regionLabel.text = monster.region

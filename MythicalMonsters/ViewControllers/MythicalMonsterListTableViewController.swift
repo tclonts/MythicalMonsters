@@ -20,8 +20,7 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
     }
-
-  
+    
     // Function for reloading tableview
     @objc func reloadCVC() {
         self.tableView?.reloadData()
@@ -89,7 +88,14 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.isOpaque = true
-        navigationItem.largeTitleDisplayMode = .automatic
+        
+    
+     
+        
+        
+
+        navigationItem.title = "Mystical Creatures"
+        navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.barTintColor = UIColor.mmDeepBlue
         navigationController?.navigationBar.tintColor = UIColor.mmWhiteIce
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]
