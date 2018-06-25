@@ -32,11 +32,11 @@ class MonstersController {
     
     // Create
     
-    func createMonster(monsterImage: UIImage?, name: String, origin: String, description: String, Region: String) {
+    func createMonster(monsterImage: UIImage?, name: String, origin: String, description: String, type: String, webLink: String) {
         guard let monsterImage = monsterImage else { return }
         guard let data = UIImageJPEGRepresentation(monsterImage, 0.8) else { return }
         
-        let newMonster = MythicalMonster(name: name, origin: origin, description: description, region: Region, monsterImage: data)
+        let newMonster = MythicalMonster(name: name, origin: origin, description: description, type: type, webLink: webLink, monsterImage: data)
         mythicalMonster.append(newMonster)
         saveToPersistentStore()
     }

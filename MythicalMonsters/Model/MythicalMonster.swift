@@ -17,14 +17,16 @@ class MythicalMonster {
     private let nameKey = "name"
     private let originKey = "origin"
     private let descriptionKey = "description"
-    private let regionKey = "region"
+    private let typeKey = "type"
+    private let webLinkKey = "webLink"
     private let monsterImageKey = "monsterImage"
     
     // Properties
     let name: String
     let origin: String
     let description: String
-    let region: String
+    let type: String
+    let webLink: String
     var cloudKitRecordID: CKRecordID?
     
     let monsterImage: Data?
@@ -34,11 +36,12 @@ class MythicalMonster {
     }
     
     // Initializer
-    init(name: String, origin: String, description: String, region: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "MysticalMonstersLogo-1"))) {
+    init(name: String, origin: String, description: String, type: String, webLink: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "MysticalMonstersLogo-1"))) {
         self.name = name
         self.origin = origin
         self.description = description
-        self.region = region
+        self.type = type
+        self.webLink = webLink
         self.monsterImage = monsterImage
     }
     
@@ -48,7 +51,8 @@ class MythicalMonster {
         guard let name = cloudKitRecord[nameKey] as? String,
             let origin = cloudKitRecord[originKey] as? String,
             let description = cloudKitRecord[descriptionKey] as? String,
-            let region = cloudKitRecord[regionKey] as? String,
+            let type = cloudKitRecord[typeKey] as? String,
+            let webLink = cloudKitRecord[webLinkKey] as? String,
             let photoAsset = cloudKitRecord[monsterImageKey] as? CKAsset else { return nil}
             let monsterImage = try? Data(contentsOf: photoAsset.fileURL)
 
@@ -56,7 +60,8 @@ class MythicalMonster {
         self.name = name
         self.origin = origin
         self.description = description
-        self.region = region
+        self.type = type
+        self.webLink = webLink
         self.monsterImage = monsterImage
         self.cloudKitRecordID = cloudKitRecord.recordID
     }
@@ -71,7 +76,8 @@ class MythicalMonster {
         record.setValue(name, forKey: nameKey)
         record.setValue(origin, forKey: originKey)
         record.setValue(description, forKey: descriptionKey)
-        record.setValue(region, forKey: regionKey)
+        record.setValue(type, forKey: typeKey)
+        record.setValue(webLink, forKey: webLinkKey)
         
         if let monsterImage = monsterImage{
             record[monsterImageKey] = CKAsset(fileURL: temporaryPhotoURL)

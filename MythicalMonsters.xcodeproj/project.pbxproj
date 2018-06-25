@@ -144,6 +144,7 @@
 				BE5DC4E920C2027500BE617A /* Model */,
 				BE5DC4EA20C2028300BE617A /* ModelControllers */,
 				BE5DC4EB20C2029200BE617A /* ViewControllers */,
+				BE62C03820DD996700E746F8 /* Parallax Helper Files */,
 				BE5DC4EC20C202CB00BE617A /* CloudKitManager */,
 				BE5DC4E420C1FDC200BE617A /* Resources */,
 			);
@@ -194,9 +195,6 @@
 				BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */,
 				BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */,
 				BE2272BF20D2D4190020164D /* MonsterDetailViewController.swift */,
-				BEC8A2D420D9D76200608A9F /* MonstersViewController.swift */,
-				BEC8A2D820DC277900608A9F /* MonsterCollectionViewCell.swift */,
-				BEC8A2D620DB038800608A9F /* CustomView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -209,6 +207,16 @@
 				BE2272C120D2D9DF0020164D /* ColorHelper.swift */,
 			);
 			path = CloudKitManager;
+			sourceTree = "<group>";
+		};
+		BE62C03820DD996700E746F8 /* Parallax Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEC8A2D420D9D76200608A9F /* MonstersViewController.swift */,
+				BEC8A2D820DC277900608A9F /* MonsterCollectionViewCell.swift */,
+				BEC8A2D620DB038800608A9F /* CustomView.swift */,
+			);
+			path = "Parallax Helper Files";
 			sourceTree = "<group>";
 		};
 		BECEAEF620D1B8F000C8EF21 /* SF Compact */ = {

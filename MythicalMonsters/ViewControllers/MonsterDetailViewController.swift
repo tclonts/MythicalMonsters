@@ -18,11 +18,13 @@ class MonsterDetailViewController: UIViewController {
     @IBOutlet weak var regionPermanentLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var contentViewTwo: UIView!
+    @IBOutlet weak var webLinkButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        self.view.backgroundColor = UIColor.mmDarkBrown
         nameLabel.textColor = UIColor.mmWhiteIce
         
         originLabel.textColor = UIColor.mmWhiteIce
@@ -38,14 +40,18 @@ class MonsterDetailViewController: UIViewController {
         contentViewTwo.backgroundColor = UIColor.mmDarkBrown
         contentView.backgroundColor = UIColor.mmDarkGray
         
-//        let titleImageView = UIImageView(image: #imageLiteral(resourceName: "MysticalMonstersLogo-1"))
-//        titleImageView.frame = CGRect(x: -10, y: 0, width: 60, height: 60)
-//        titleImageView.contentMode = .scaleAspectFit
-//        navigationItem.titleView = titleImageView
+        setupLogo()
+        
+    
+    }
+
+    var monster: MythicalMonster?
+    
+    func setupLogo() {
         //create a new button
         let button = UIButton.init(type: .custom)
         //set image for button
-        button.setImage(UIImage(named: "MonsterIcon2"), for: .normal)
+        button.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
         //add function for button
         button.addTarget(self, action: "fbButtonPressed", for: .touchUpInside)
         //set frame
@@ -56,19 +62,20 @@ class MonsterDetailViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = barButton
         navigationItem.title = "Monster Details"
     }
+    @IBAction func webLinkButtonTapped(_ sender: UIButton) {
+        guard let monster = monster else { return }
+        UIApplication.shared.openURL(NSURL(string: monster.webLink)! as URL)
 
-    var monster: MythicalMonster?
-
+    }
+    
     private func updateViews() {
         guard let monster = monster else { return }
         
         guard let monsterImage = UIImage(data: monster.monsterImage!) else { return }
         monsterImageView.image = monsterImage
-//        monsterImageView.contentMode = .scaleToFill
-//        monsterImageView.clipsToBounds = true
         nameLabel.text = monster.name
         originLabel.text = monster.origin
-        regionLabel.text = monster.region
+        regionLabel.text = monster.type
         descriptionTextView.text = monster.description
     }
 

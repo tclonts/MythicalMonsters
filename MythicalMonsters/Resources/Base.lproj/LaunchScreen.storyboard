@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MysticalMonstersLogo-1" translatesAutoresizingMaskIntoConstraints="NO" id="lZq-DX-gir">
-                                <rect key="frame" x="67" y="213.5" width="240" height="240"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MythicalMonstersLogo" translatesAutoresizingMaskIntoConstraints="NO" id="lZq-DX-gir">
+                                <rect key="frame" x="33.5" y="233.5" width="307" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="dI1-D4-OlT"/>
-                                    <constraint firstAttribute="width" constant="240" id="yo7-xd-L47"/>
+                                    <constraint firstAttribute="height" constant="200" id="dI1-D4-OlT"/>
+                                    <constraint firstAttribute="width" constant="307" id="yo7-xd-L47"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MysticalMonstersLogo-1" width="240" height="186"/>
+        <image name="MythicalMonstersLogo" width="240" height="186"/>
     </resources>
 </document>

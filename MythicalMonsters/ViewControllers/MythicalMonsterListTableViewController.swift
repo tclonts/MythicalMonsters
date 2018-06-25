@@ -19,6 +19,8 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         definesPresentationContext = true
         setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
+        
+        self.view.backgroundColor = UIColor.mmDarkBrown
     }
     
     // Function for reloading tableview
@@ -96,7 +98,7 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
 
         navigationItem.title = "Mystical Creatures"
         navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.barTintColor = UIColor.mmDeepBlue
+        navigationController?.navigationBar.barTintColor = UIColor.mmKhaki
         navigationController?.navigationBar.tintColor = UIColor.mmWhiteIce
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]

@@ -16,6 +16,7 @@ class AddMonsterViewController: UIViewController {
     @IBOutlet weak var originTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var regionTextField: UITextField!
+    @IBOutlet weak var webLinkTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     
     
@@ -34,6 +35,7 @@ class AddMonsterViewController: UIViewController {
         monsterNameTextField.delegate = self
         originTextField.delegate = self
         regionTextField.delegate = self
+        webLinkTextField.delegate = self
         descriptionTextView.delegate = self
         
         monsterNameTextField.autocapitalizationType = .words
@@ -52,6 +54,9 @@ class AddMonsterViewController: UIViewController {
         textFieldDidBeginEditing(regionTextField)
         textFieldDidEndEditing(regionTextField)
         
+        textFieldDidBeginEditing(webLinkTextField)
+        textFieldDidEndEditing(webLinkTextField)
+        
         scrollViewDidScroll(scrollView)
         scrollView.isDirectionalLockEnabled = true
         
@@ -68,7 +73,7 @@ class AddMonsterViewController: UIViewController {
     }
     
     @IBAction func saveMonsterButtonTapped(_ sender: UIBarButtonItem) {
-        if (monsterNameTextField.text?.isEmpty)! || (originTextField.text?.isEmpty)! || (descriptionTextView.text?.isEmpty)! || (regionTextField.text?.isEmpty)! || monsterNameTextField.text  == "Name..." || originTextField.text == "Origin..." || regionTextField.text == "Region..." || descriptionTextView.text == "Monster description..." {
+        if (monsterNameTextField.text?.isEmpty)! || (originTextField.text?.isEmpty)! || (descriptionTextView.text?.isEmpty)! || (regionTextField.text?.isEmpty)! || (webLinkTextField.text?.isEmpty)! || monsterNameTextField.text  == "Name..." || originTextField.text == "Origin..." || regionTextField.text == "Type..." || webLinkTextField.text == "WebLink..." || descriptionTextView.text == "Monster description..." {
             //display alert message
             DispatchQueue.main.async {
                 self.presentSimpleAlert(title: "oops", message: "all textfields required")
@@ -81,10 +86,11 @@ class AddMonsterViewController: UIViewController {
         guard let monsterName = monsterNameTextField.text else { return }
         guard let origin = originTextField.text else { return }
         guard let description = descriptionTextView.text else { return }
-        guard let region = regionTextField.text else { return }
+        guard let type = regionTextField.text else { return }
+        guard let webLink = webLinkTextField.text else { return }
         
         
-     MonstersController.shared.createMonster(monsterImage: image, name: monsterName, origin: origin, description: description, Region: region)
+        MonstersController.shared.createMonster(monsterImage: image, name: monsterName, origin: origin, description: description, type: type, webLink: webLink)
         
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: "Success", message: "Monster Added!", preferredStyle: .alert)
@@ -171,8 +177,12 @@ extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {
         }
         
         if (regionTextField.text?.isEmpty)! {
-            regionTextField.text = "Region..."
+            regionTextField.text = "Type..."
             regionTextField.textColor = UIColor.mmWhiteIce
+        }
+        if (webLinkTextField.text?.isEmpty)! {
+            webLinkTextField.text = "WebLink..."
+            webLinkTextField.textColor = UIColor.mmWhiteIce
         }
     }
     // Texfields can only be numbers for the number sections
