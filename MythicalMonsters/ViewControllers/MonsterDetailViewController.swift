@@ -52,11 +52,10 @@ class MonsterDetailViewController: UIViewController {
         let button = UIButton.init(type: .custom)
         //set image for button
         button.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
-        //add function for button
-        button.addTarget(self, action: "fbButtonPressed", for: .touchUpInside)
         //set frame
         button.frame = CGRect(x: -10, y: 0, width: 53, height: 51)
         let barButton = UIBarButtonItem(customView: button)
+        
         
         //assign button to navigationbar
         self.navigationItem.rightBarButtonItem = barButton

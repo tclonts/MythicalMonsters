@@ -12,10 +12,12 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
     
     let searchController = UISearchController(searchResultsController: nil)
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        addButton.tintColor = .clear
         definesPresentationContext = true
         setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
