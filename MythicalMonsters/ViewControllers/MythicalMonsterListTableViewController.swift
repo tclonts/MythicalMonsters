@@ -50,10 +50,7 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         self.searchController.dimsBackgroundDuringPresentation = false
 
         searchController.searchBar.tintColor = UIColor.mmWhiteIce
-//        searchController.searchBar.placeholder = "Search monsters by name"
 
-        
-     
         if #available(iOS 11.0, *) {
             
             if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
@@ -92,13 +89,8 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.isOpaque = true
-        
-    
-     
-        
-        
 
-        navigationItem.title = "Mystical Creatures"
+        navigationItem.title = "Maze of Monsters"
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.barTintColor = UIColor.mmKhaki
         navigationController?.navigationBar.tintColor = UIColor.mmWhiteIce
@@ -142,12 +134,18 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         return cell
     }
     
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMonsterDetail" {
-            if let destinationVC = segue.destination as? MonsterDetailViewController,
-            let indexPath = tableView.indexPathForSelectedRow?.row {
-            let monster = MonstersController.shared.mythicalMonster[indexPath]
-            destinationVC.monster = monster
+            if let indexPath = tableView.indexPathForSelectedRow,
+                let detailVC = segue.destination as? MonsterDetailViewController {
+                if searchController.searchBar.text != "" {
+                    let filteredMonsters = MonstersController.shared.filteredMonsters[indexPath.row]
+                    detailVC.monster = filteredMonsters
+                } else {
+                    let monster = MonstersController.shared.mythicalMonster[indexPath.row]
+                    detailVC.monster = monster
+                }
             }
         }
     }
