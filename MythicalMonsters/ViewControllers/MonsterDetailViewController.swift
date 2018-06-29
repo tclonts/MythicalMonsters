@@ -63,8 +63,10 @@ class MonsterDetailViewController: UIViewController {
     }
     @IBAction func webLinkButtonTapped(_ sender: UIButton) {
         guard let monster = monster else { return }
-        UIApplication.shared.openURL(NSURL(string: monster.webLink)! as URL)
-
+        UIApplication.shared.canOpenURL(NSURL(string: monster.webLink)! as URL)
+        UIApplication.shared.open(NSURL(string: monster.webLink)! as URL, options: [:], completionHandler: { (success) in
+            print("Open url : \(success)")
+        })
     }
     
     private func updateViews() {

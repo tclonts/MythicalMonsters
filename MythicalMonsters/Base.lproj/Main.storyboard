@@ -252,35 +252,6 @@
             </objects>
             <point key="canvasLocation" x="1900" y="-136.28185907046478"/>
         </scene>
-        <!--Monsters View Controller-->
-        <scene sceneID="YGB-2T-bvC">
-            <objects>
-                <viewController id="2QZ-0z-Sef" customClass="MonstersViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="B7i-h5-cjq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vdH-Ib-ZYX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="sb7-6i-2Jx" firstAttribute="trailing" secondItem="vdH-Ib-ZYX" secondAttribute="trailing" id="0hp-qE-Oxq"/>
-                            <constraint firstItem="sb7-6i-2Jx" firstAttribute="bottom" secondItem="vdH-Ib-ZYX" secondAttribute="bottom" id="a6y-L0-5os"/>
-                            <constraint firstItem="sb7-6i-2Jx" firstAttribute="top" secondItem="vdH-Ib-ZYX" secondAttribute="top" id="jtc-wT-dOS"/>
-                            <constraint firstItem="vdH-Ib-ZYX" firstAttribute="leading" secondItem="sb7-6i-2Jx" secondAttribute="leading" id="uaq-2i-CnS"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="sb7-6i-2Jx"/>
-                    </view>
-                    <connections>
-                        <outlet property="scrollView" destination="vdH-Ib-ZYX" id="gDk-c5-Idz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jCP-rt-ZuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="802.39999999999998" y="1090.704647676162"/>
-        </scene>
         <!--Monster Detail View Controller-->
         <scene sceneID="tTq-aI-pfW">
             <objects>

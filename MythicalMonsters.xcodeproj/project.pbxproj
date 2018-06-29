@@ -47,6 +47,7 @@
 		BECEAF1E20D1B8F000C8EF21 /* SFCompactText-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BECEAF0920D1B8F000C8EF21 /* SFCompactText-HeavyItalic.otf */; };
 		BECEAF1F20D1B8F000C8EF21 /* SFCompactText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BECEAF0A20D1B8F000C8EF21 /* SFCompactText-LightItalic.otf */; };
 		BECEAF2020D1B8F000C8EF21 /* SFCompactDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = BECEAF0B20D1B8F000C8EF21 /* SFCompactDisplay-Thin.otf */; };
+		BEFF178C20E5CE9100AEA8EB /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFF178B20E5CE9100AEA8EB /* AppUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		BECEAF0920D1B8F000C8EF21 /* SFCompactText-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactText-HeavyItalic.otf"; sourceTree = "<group>"; };
 		BECEAF0A20D1B8F000C8EF21 /* SFCompactText-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactText-LightItalic.otf"; sourceTree = "<group>"; };
 		BECEAF0B20D1B8F000C8EF21 /* SFCompactDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Thin.otf"; sourceTree = "<group>"; };
+		BEFF178B20E5CE9100AEA8EB /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				BE5DC4D220C1FC3100BE617A /* AppDelegate.swift */,
 				BE5DC4D920C1FC3300BE617A /* Assets.xcassets */,
 				BE5DC4DB20C1FC3300BE617A /* LaunchScreen.storyboard */,
+				BEFF178B20E5CE9100AEA8EB /* AppUtility.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEFF178C20E5CE9100AEA8EB /* AppUtility.swift in Sources */,
 				BE2272C020D2D4190020164D /* MonsterDetailViewController.swift in Sources */,
 				BE2272C220D2D9DF0020164D /* ColorHelper.swift in Sources */,
 				BECEAEEA20D0BB8B00C8EF21 /* MonsterTableViewCell.swift in Sources */,
