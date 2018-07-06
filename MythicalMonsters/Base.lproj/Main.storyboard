@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yZu-Vc-gqc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JvD-bQ-fH0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,100 +19,140 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Mythical Monster List Table View Controller-->
-        <scene sceneID="5sO-fJ-Xb8">
+        <!--Title-->
+        <scene sceneID="iAR-J1-EG8">
             <objects>
-                <tableViewController id="4Qg-Dw-dYM" customClass="MythicalMonsterListTableViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Iy-k3-1Fn">
+                <viewController id="PbD-uN-bus" customClass="MythicalMonsterListTableViewController" customModule="MythicalMonsters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NB3-D0-2F7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="200" id="1tB-eV-aCx" customClass="MonsterTableViewCell" customModule="MythicalMonsters" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="200"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1tB-eV-aCx" id="SF2-XZ-hE0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSA-PQ-voD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                        </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fb-Cc-LuT">
-                                            <rect key="frame" x="0.0" y="123" width="375" height="77"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CXu-mm-PuV">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rVU-zQ-5OY" userLabel="Map Table View">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ylh-bP-aTR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Fl-2e-Hfm">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="monsterCell" rowHeight="200" id="MaX-8n-VW3" customClass="MonsterTableViewCell" customModule="MythicalMonsters" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MaX-8n-VW3" id="l7N-Yo-DaQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-FH-F49">
-                                                    <rect key="frame" x="10" y="11" width="355" height="54"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T7P-9x-Fa9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-a4-ba8">
+                                                    <rect key="frame" x="0.0" y="123" width="375" height="77"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monster Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eou-8A-xbR">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
-                                                            <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="25"/>
-                                                            <color key="textColor" red="0.15686274509803921" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Origins)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp3-vN-cTa">
-                                                            <rect key="frame" x="0.0" y="30" width="355" height="24"/>
-                                                            <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="20"/>
-                                                            <color key="textColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="h4g-Xg-Sph">
+                                                            <rect key="frame" x="10" y="11" width="355" height="54"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monster Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZX-BA-DH3">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                                    <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="25"/>
+                                                                    <color key="textColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Origins)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQx-lJ-oo0">
+                                                                    <rect key="frame" x="0.0" y="30" width="355" height="24"/>
+                                                                    <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="20"/>
+                                                                    <color key="textColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="355" id="JSj-j4-zTy"/>
+                                                                <constraint firstItem="zZX-BA-DH3" firstAttribute="width" secondItem="h4g-Xg-Sph" secondAttribute="width" id="JpH-L0-6Vw"/>
+                                                                <constraint firstItem="fQx-lJ-oo0" firstAttribute="width" secondItem="h4g-Xg-Sph" secondAttribute="width" id="Taf-hc-oDK"/>
+                                                            </constraints>
+                                                        </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.15686274510000001" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="Dp3-vN-cTa" firstAttribute="width" secondItem="ZWK-FH-F49" secondAttribute="width" id="GoK-xV-aAC"/>
-                                                        <constraint firstAttribute="width" constant="355" id="feC-Xq-UuU"/>
-                                                        <constraint firstItem="eou-8A-xbR" firstAttribute="width" secondItem="ZWK-FH-F49" secondAttribute="width" id="rNG-Qx-dbu"/>
+                                                        <constraint firstItem="h4g-Xg-Sph" firstAttribute="centerY" secondItem="o5y-a4-ba8" secondAttribute="centerY" id="Ebb-P1-5op"/>
                                                     </constraints>
-                                                </stackView>
+                                                </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="ZWK-FH-F49" firstAttribute="centerY" secondItem="6Fb-Cc-LuT" secondAttribute="centerY" id="FYk-gc-H3A"/>
+                                                <constraint firstAttribute="trailing" secondItem="o5y-a4-ba8" secondAttribute="trailing" id="FFY-De-ei5"/>
+                                                <constraint firstItem="o5y-a4-ba8" firstAttribute="trailing" secondItem="T7P-9x-Fa9" secondAttribute="trailing" id="G2e-4e-u4s"/>
+                                                <constraint firstItem="o5y-a4-ba8" firstAttribute="leading" secondItem="T7P-9x-Fa9" secondAttribute="leading" id="JNf-9H-DAv"/>
+                                                <constraint firstItem="o5y-a4-ba8" firstAttribute="bottom" secondItem="T7P-9x-Fa9" secondAttribute="bottom" id="Mfm-lP-Tkc"/>
+                                                <constraint firstAttribute="trailing" secondItem="h4g-Xg-Sph" secondAttribute="trailing" constant="10" id="WHC-Ys-YpX"/>
+                                                <constraint firstItem="o5y-a4-ba8" firstAttribute="leading" secondItem="l7N-Yo-DaQ" secondAttribute="leading" id="Wsx-m6-3ch"/>
+                                                <constraint firstItem="T7P-9x-Fa9" firstAttribute="top" secondItem="l7N-Yo-DaQ" secondAttribute="top" id="Xqb-da-XKT"/>
+                                                <constraint firstItem="o5y-a4-ba8" firstAttribute="top" secondItem="l7N-Yo-DaQ" secondAttribute="top" constant="123" id="ZUg-cO-e0M"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="o5y-a4-ba8" secondAttribute="bottom" constant="-11" id="iZy-Fb-XrE"/>
+                                                <constraint firstItem="h4g-Xg-Sph" firstAttribute="leading" secondItem="l7N-Yo-DaQ" secondAttribute="leading" constant="10" id="oc3-l7-xy4"/>
                                             </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="6Fb-Cc-LuT" firstAttribute="leading" secondItem="SF2-XZ-hE0" secondAttribute="leading" id="8rs-YI-hgs"/>
-                                        <constraint firstItem="6Fb-Cc-LuT" firstAttribute="top" secondItem="SF2-XZ-hE0" secondAttribute="top" constant="123" id="FXa-6t-oRm"/>
-                                        <constraint firstItem="6Fb-Cc-LuT" firstAttribute="leading" secondItem="lSA-PQ-voD" secondAttribute="leading" id="TLi-ER-ri2"/>
-                                        <constraint firstItem="lSA-PQ-voD" firstAttribute="top" secondItem="SF2-XZ-hE0" secondAttribute="top" id="Tkq-Dj-KBa"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZWK-FH-F49" secondAttribute="trailing" constant="10" id="WDD-RV-KrX"/>
-                                        <constraint firstItem="ZWK-FH-F49" firstAttribute="leading" secondItem="SF2-XZ-hE0" secondAttribute="leading" constant="10" id="aYA-wx-x9P"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="6Fb-Cc-LuT" secondAttribute="bottom" constant="-11" id="ccg-O4-pJZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="6Fb-Cc-LuT" secondAttribute="trailing" id="dRd-oy-A7q"/>
-                                        <constraint firstItem="6Fb-Cc-LuT" firstAttribute="bottom" secondItem="lSA-PQ-voD" secondAttribute="bottom" id="iE0-16-dJE"/>
-                                        <constraint firstItem="6Fb-Cc-LuT" firstAttribute="trailing" secondItem="lSA-PQ-voD" secondAttribute="trailing" id="j0g-mk-ebn"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="monsterImageView" destination="lSA-PQ-voD" id="Cd4-cm-gEo"/>
-                                    <outlet property="monsterNameLabel" destination="eou-8A-xbR" id="bki-Il-0jL"/>
-                                    <outlet property="monsterOriginsLabel" destination="Dp3-vN-cTa" id="7K1-wN-Gr2"/>
-                                    <outlet property="view" destination="6Fb-Cc-LuT" id="a7q-Go-oUK"/>
-                                    <segue destination="O82-e9-rq1" kind="show" identifier="toMonsterDetail" id="piF-d5-zkW"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="4Qg-Dw-dYM" id="AyI-tb-jD2"/>
-                            <outlet property="delegate" destination="4Qg-Dw-dYM" id="vu1-kH-uqu"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="cbl-QC-vnD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vf4-JT-aFY">
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="monsterImageView" destination="T7P-9x-Fa9" id="D6L-GK-Og8"/>
+                                            <outlet property="monsterNameLabel" destination="zZX-BA-DH3" id="Db8-e0-lS1"/>
+                                            <outlet property="monsterOriginsLabel" destination="fQx-lJ-oo0" id="afX-xa-qL0"/>
+                                            <outlet property="view" destination="o5y-a4-ba8" id="pUJ-fh-QjQ"/>
+                                            <segue destination="O82-e9-rq1" kind="show" identifier="toMonsterDetail" id="6rB-ap-WpZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7Fl-2e-Hfm" firstAttribute="leading" secondItem="RU6-UL-ipY" secondAttribute="leading" id="4FE-XU-cXf"/>
+                            <constraint firstItem="7Fl-2e-Hfm" firstAttribute="top" secondItem="RU6-UL-ipY" secondAttribute="top" constant="56" id="7e6-pe-EtO"/>
+                            <constraint firstItem="rVU-zQ-5OY" firstAttribute="leading" secondItem="ylh-bP-aTR" secondAttribute="leading" id="9Du-0a-meF"/>
+                            <constraint firstItem="RU6-UL-ipY" firstAttribute="bottom" secondItem="CXu-mm-PuV" secondAttribute="bottom" id="BYa-Uu-Gfn"/>
+                            <constraint firstItem="CXu-mm-PuV" firstAttribute="leading" secondItem="RU6-UL-ipY" secondAttribute="leading" id="CcQ-Sy-cmD"/>
+                            <constraint firstItem="RU6-UL-ipY" firstAttribute="trailing" secondItem="CXu-mm-PuV" secondAttribute="trailing" id="Kpi-ds-ZOP"/>
+                            <constraint firstItem="rVU-zQ-5OY" firstAttribute="trailing" secondItem="ylh-bP-aTR" secondAttribute="trailing" id="N05-n4-IQa"/>
+                            <constraint firstItem="CXu-mm-PuV" firstAttribute="leading" secondItem="ylh-bP-aTR" secondAttribute="leading" id="O4t-WC-jvG"/>
+                            <constraint firstItem="7Fl-2e-Hfm" firstAttribute="top" secondItem="ylh-bP-aTR" secondAttribute="bottom" id="ODb-zw-lLM"/>
+                            <constraint firstItem="rVU-zQ-5OY" firstAttribute="top" secondItem="ylh-bP-aTR" secondAttribute="bottom" id="RTR-7V-k1G"/>
+                            <constraint firstItem="RU6-UL-ipY" firstAttribute="trailing" secondItem="7Fl-2e-Hfm" secondAttribute="trailing" id="SM4-Rd-NEa"/>
+                            <constraint firstItem="CXu-mm-PuV" firstAttribute="trailing" secondItem="ylh-bP-aTR" secondAttribute="trailing" id="Ynp-Fg-H0o"/>
+                            <constraint firstItem="rVU-zQ-5OY" firstAttribute="bottom" secondItem="CXu-mm-PuV" secondAttribute="bottom" id="iRo-5J-gWB"/>
+                            <constraint firstItem="RU6-UL-ipY" firstAttribute="bottom" secondItem="7Fl-2e-Hfm" secondAttribute="bottom" id="k0E-gY-phH"/>
+                            <constraint firstItem="CXu-mm-PuV" firstAttribute="top" secondItem="RU6-UL-ipY" secondAttribute="top" constant="56" id="veI-df-zN6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RU6-UL-ipY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="auV-9Y-ZnJ" userLabel="Navigation Item">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="z1P-Dp-nh8">
                             <connections>
-                                <action selector="addMonsterButtonTapped:" destination="4Qg-Dw-dYM" id="nAO-NK-2nV"/>
-                                <segue destination="5f2-Ky-Je0" kind="show" id="JUj-xG-tld"/>
+                                <segue destination="5f2-Ky-Je0" kind="show" id="Ndh-0u-n0o"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="listIcon" id="b2T-Qj-mjO">
+                            <connections>
+                                <action selector="mapButtonTapped:" destination="PbD-uN-bus" id="Y8p-UL-jsG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="Vf4-JT-aFY" id="d3O-Th-fou"/>
+                        <outlet property="addButton" destination="z1P-Dp-nh8" id="cSA-ZH-uOk"/>
+                        <outlet property="mapButton" destination="b2T-Qj-mjO" id="IGQ-64-WHM"/>
+                        <outlet property="mapTableView" destination="rVU-zQ-5OY" id="DmO-LF-agZ"/>
+                        <outlet property="mapView" destination="CXu-mm-PuV" id="Al4-PZ-W0G"/>
+                        <outlet property="searchBar" destination="ylh-bP-aTR" id="Hg2-HH-4jW"/>
+                        <outlet property="tableView" destination="7Fl-2e-Hfm" id="k18-7h-JKB"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4k8-ts-1Mu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CaS-Nj-YB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="780" y="169.56521739130437"/>
+            <point key="canvasLocation" x="841" y="-444"/>
         </scene>
         <!--Add New Monster-->
         <scene sceneID="vjj-Kc-TMc">
@@ -240,7 +280,7 @@
                         <outlet property="regionTextField" destination="nDb-Ht-hRs" id="BL4-d7-lat"/>
                         <outlet property="scrollView" destination="upf-2C-QtP" id="Cbn-rm-K2D"/>
                         <outlet property="webLinkTextField" destination="dl5-oe-NR6" id="C5V-JF-r4P"/>
-                        <segue destination="yZu-Vc-gqc" kind="showDetail" identifier="backToTV" id="44Y-74-prt"/>
+                        <segue destination="JvD-bQ-fH0" kind="showDetail" identifier="backToTV" id="JXk-Ic-8Rj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxI-2R-Ylr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,7 +290,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1900" y="-136.28185907046478"/>
+            <point key="canvasLocation" x="2113" y="-974"/>
         </scene>
         <!--Monster Detail View Controller-->
         <scene sceneID="tTq-aI-pfW">
@@ -399,29 +439,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcu-Q2-j0B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="532.98350824587715"/>
+            <point key="canvasLocation" x="2113" y="-93"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Tpk-nC-3s9">
+        <scene sceneID="Qwg-Mx-8oe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yZu-Vc-gqc" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JvD-bQ-fH0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B4h-Lk-DbQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fjl-t6-vFC">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4Qg-Dw-dYM" kind="relationship" relationship="rootViewController" id="SJx-YO-cg5"/>
+                        <segue destination="PbD-uN-bus" kind="relationship" relationship="rootViewController" id="Ja7-Xp-DiU"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b88-qo-Pdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CjX-O0-pVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210" y="170"/>
+            <point key="canvasLocation" x="-209" y="-390"/>
         </scene>
     </scenes>
     <resources>
         <image name="WebLink" width="20" height="20"/>
         <image name="WolfPaths" width="160" height="89"/>
+        <image name="listIcon" width="30" height="30"/>
     </resources>
 </document>

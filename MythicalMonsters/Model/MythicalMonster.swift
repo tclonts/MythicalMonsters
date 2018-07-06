@@ -9,11 +9,21 @@
 import Foundation
 import UIKit
 import CloudKit
+import MapKit
 
-class MythicalMonster {
+extension CLLocationCoordinate2D: Equatable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude &&
+            lhs.longitude == rhs.longitude
+    }
+}
+
+class MythicalMonster: NSObject, MKAnnotation{
     
     // Coding Keys
     static let typeKey = "MythicalMonsters"
+    private let longitudeKey = "longitutde"
+    private let latitudeKey = "latitude"
     private let nameKey = "name"
     private let originKey = "origin"
     private let descriptionKey = "description"
@@ -24,9 +34,12 @@ class MythicalMonster {
     // Properties
     let name: String
     let origin: String
-    let description: String
+    let longitude: String
+    let latitude: String
+    var coordinate: CLLocationCoordinate2D
     let type: String
     let webLink: String
+    let monsterDescription: String
     var cloudKitRecordID: CKRecordID?
     
     let monsterImage: Data?
@@ -36,21 +49,28 @@ class MythicalMonster {
     }
     
     // Initializer
-    init(name: String, origin: String, description: String, type: String, webLink: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "MysticalMonstersLogo-1"))) {
+    init(name: String, longitude: String, latitude: String, coordinate: CLLocationCoordinate2D, origin: String, monsterDescription: String, type: String, webLink: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "MysticalMonstersLogo-1"))) {
         self.name = name
+        self.longitude = longitude
+        self.latitude = latitude
+        self.coordinate = coordinate
         self.origin = origin
-        self.description = description
+        self.monsterDescription = monsterDescription
         self.type = type
         self.webLink = webLink
         self.monsterImage = monsterImage
     }
     
-    // Failable Initializer
+    // Failable Initializer- used for fetching from Cloudkit
     
     init?(cloudKitRecord: CKRecord) {
         guard let name = cloudKitRecord[nameKey] as? String,
+            let longitudeString = cloudKitRecord[longitudeKey] as? String,
+            let latitudeString = cloudKitRecord[latitudeKey] as? String,
             let origin = cloudKitRecord[originKey] as? String,
-            let description = cloudKitRecord[descriptionKey] as? String,
+            let monsterDescription = cloudKitRecord[descriptionKey] as? String,
+            let longitude = Double(longitudeString),
+            let latitude = Double(latitudeString),
             let type = cloudKitRecord[typeKey] as? String,
             let webLink = cloudKitRecord[webLinkKey] as? String,
             let photoAsset = cloudKitRecord[monsterImageKey] as? CKAsset else { return nil}
@@ -58,8 +78,11 @@ class MythicalMonster {
 
         
         self.name = name
+        self.longitude = longitudeString
+        self.latitude = latitudeString
         self.origin = origin
-        self.description = description
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.monsterDescription = monsterDescription
         self.type = type
         self.webLink = webLink
         self.monsterImage = monsterImage
@@ -74,11 +97,13 @@ class MythicalMonster {
         let record = CKRecord(recordType: MythicalMonster.typeKey, recordID: recordID)
             
         record.setValue(name, forKey: nameKey)
+        record.setValue(longitude, forKey: longitudeKey)
+        record.setValue(latitude, forKey: latitudeKey)
         record.setValue(origin, forKey: originKey)
-        record.setValue(description, forKey: descriptionKey)
+        record.setValue(monsterDescription, forKey: descriptionKey)
         record.setValue(type, forKey: typeKey)
         record.setValue(webLink, forKey: webLinkKey)
-        
+
         if let monsterImage = monsterImage{
             record[monsterImageKey] = CKAsset(fileURL: temporaryPhotoURL)
         }

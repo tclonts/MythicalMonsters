@@ -7,17 +7,32 @@
 //
 
 import UIKit
+import MapKit
 
-class MythicalMonsterListTableViewController: UITableViewController, UISearchResultsUpdating {
+
+class MythicalMonsterListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var mapTableView: UITableView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     let searchController = UISearchController(searchResultsController: nil)
-
-    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        addButton.tintColor = .clear
+        tableView.delegate = self
+        tableView.dataSource = self
+        mapView.delegate = self as! MKMapViewDelegate
+        mapTableView.delegate = self
+        mapTableView.dataSource = self
+        self.mapTableView.isHidden = true
+        
+        
+//        addButton.tintColor = .clear
         definesPresentationContext = true
         setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
@@ -25,14 +40,75 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
         self.view.backgroundColor = UIColor.mmDarkBrown
     }
     
+    // MARK: -Properties
+    
+    var isFlip = true
+    var coordinates: CLLocationCoordinate2D?
+    
+    
+    
+    @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
+        if (isFlip == true) {
+            mapView.isHidden = true
+
+            self.mapButton.image = UIImage(named: "listIcon")
+//            self.mapButton.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
+            self.searchBar.placeholder = "Search by monster name..."
+            populateMapView()
+            let regionRadius: CLLocationDistance = 500000
+            let utahLocation = CLLocationCoordinate2D(latitude: 39.4759385, longitude: -111.54658374)
+            let coordinateRegion = MKCoordinateRegionMakeWithDistance(utahLocation, regionRadius, regionRadius)
+            mapView.setRegion(coordinateRegion, animated: true)
+        } else {
+            mapView.isHidden = false
+            self.mapButton.image = UIImage(named: "mapIcon")
+
+//            self.mapButton.setImage(UIImage(named: "mapIcon"), for: .normal)
+            self.searchBar.placeholder = "Search by region name..."
+        }
+        
+        UIView.transition(from: isFlip ? tableView : mapView,
+                          to: isFlip ? mapView : tableView,
+                          duration: 0.6,
+                          options: [.transitionFlipFromLeft, .showHideTransitionViews]) { (finish) in
+                            if finish {
+                                self.isFlip = !self.isFlip
+                                if self.tableView != nil {
+                                    self.mapView.isHidden = false
+                                } else {
+                                    self.mapView.isHidden = true
+                                }
+                            }
+        }
+    }
+    
+    
+    @IBAction func addMonsterButtonTapped(_ sender: UIBarButtonItem) {
+        
+    }
+    
     // Function for reloading tableview
     @objc func reloadCVC() {
         self.tableView?.reloadData()
     }
-
-    @IBAction func addMonsterButtonTapped(_ sender: UIBarButtonItem) {
-        
+    
+    func populateMapView() {
+        var annotations = mapView.annotations
+        let monsters = MonstersController.shared.mythicalMonster
+        for location in locations {
+            guard let lat = Double(location.latitude),
+                let lon = Double(location.longitude) else { return }
+            guard let image = location.image else { return }
+            let locationCoordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            let location = Location(locationName: location.locationName, longitude: location.longitude, latitude: location.latitude, coordinate: locationCoordinates, hatches: location.hatches ?? [], species: location.species, waterflowURL: location.waterflowURL ?? "", hotness: location.hotness ?? "Unknown", image: image)
+            if let locationAnnotationIndex = annotations.index(where: {$0.coordinate == location.coordinate}) {
+                annotations.remove(at: locationAnnotationIndex)
+            }
+            mapView.removeAnnotations(annotations)
+            mapView.addAnnotation(location)
+        }
     }
+
 
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -119,8 +195,6 @@ class MythicalMonsterListTableViewController: UITableViewController, UISearchRes
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath) as? MonsterTableViewCell else { return UITableViewCell() }
         
-//        let monster = MonstersController.shared.mythicalMonster[indexPath.row]
-//        cell.monster = monster
         cell.link = self
         if searchController.searchBar.text != "" {
             let filteredMonsters = MonstersController.shared.filteredMonsters[indexPath.row]
