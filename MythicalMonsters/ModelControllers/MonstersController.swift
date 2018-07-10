@@ -32,11 +32,15 @@ class MonstersController {
     
     // Create
     
-    func createMonster(monsterImage: UIImage?, name: String, origin: String, description: String, type: String, webLink: String) {
+    func createMonster(monsterImage: UIImage?, name: String, longitude: String, latitude: String, coordinate: CLLocationCoordinate2D, origin: String, description: String, type: String, webLink: String) {
         guard let monsterImage = monsterImage else { return }
         guard let data = UIImageJPEGRepresentation(monsterImage, 0.8) else { return }
         
-        let newMonster = MythicalMonster(name: name, origin: origin, description: description, type: type, webLink: webLink, monsterImage: data)
+        guard let latittude = Double(latitude) else { return }
+        guard let longittude = Double(longitude) else { return }
+        let locationCoordinates = CLLocationCoordinate2D(latitude: latittude, longitude: longittude)
+        
+        let newMonster = MythicalMonster(name: name, longitude: longitude, latitude: latitude, coordinate: locationCoordinates, origin: origin, monsterDescription: description, type: type, webLink: webLink, monsterImage: data)
         mythicalMonster.append(newMonster)
         saveToPersistentStore()
     }
@@ -49,15 +53,14 @@ class MonstersController {
     func loadFromPersistentStore() {
         CloudKitManager.shared.fetchRecordsOf(type: MythicalMonster.typeKey, database: publicDB) { (records, error) in
             if let error = error {
-                print("Error fetching recipes from cloudkit: \(error.localizedDescription)")
+                print("Error fetching monsters from cloudkit: \(error.localizedDescription)")
             } else {
-                print("Success fetching recipes from cloudkit")
+                print("Success fetching monsters from cloudkit")
             }
             guard let records = records else { return }
             var monsters = records.compactMap{MythicalMonster(cloudKitRecord: $0)}
             let sortedMonstersArray = monsters.sorted (by:{ $0.name < $1.name })
             self.mythicalMonster = sortedMonstersArray
-            
         }
     }
     

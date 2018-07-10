@@ -16,7 +16,6 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     @IBOutlet weak var mapTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -30,7 +29,6 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         mapTableView.delegate = self
         mapTableView.dataSource = self
         self.mapTableView.isHidden = true
-        
         
 //        addButton.tintColor = .clear
         definesPresentationContext = true
@@ -46,14 +44,14 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     var coordinates: CLLocationCoordinate2D?
     
     
-    
     @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         if (isFlip == true) {
             mapView.isHidden = true
 
+            navigationItem.searchController?.searchBar.placeholder = "Region"
             self.mapButton.image = UIImage(named: "listIcon")
 //            self.mapButton.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
-            self.searchBar.placeholder = "Search by monster name..."
+//            self.searchBar.placeholder = "Search by region name..."
             populateMapView()
             let regionRadius: CLLocationDistance = 500000
             let utahLocation = CLLocationCoordinate2D(latitude: 39.4759385, longitude: -111.54658374)
@@ -61,10 +59,11 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             mapView.setRegion(coordinateRegion, animated: true)
         } else {
             mapView.isHidden = false
+            navigationItem.searchController?.searchBar.placeholder = "Monster"
             self.mapButton.image = UIImage(named: "mapIcon")
 
 //            self.mapButton.setImage(UIImage(named: "mapIcon"), for: .normal)
-            self.searchBar.placeholder = "Search by region name..."
+//            self.searchBar.placeholder = "Search by monster name..."
         }
         
         UIView.transition(from: isFlip ? tableView : mapView,
@@ -95,22 +94,27 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     func populateMapView() {
         var annotations = mapView.annotations
         let monsters = MonstersController.shared.mythicalMonster
-        for location in locations {
-            guard let lat = Double(location.latitude),
-                let lon = Double(location.longitude) else { return }
-            guard let image = location.image else { return }
+        for monster in monsters {
+            guard let lat = Double(monster.latitude),
+                let lon = Double(monster.longitude) else { return }
+            guard let image = monster.photo else { return }
             let locationCoordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            let location = Location(locationName: location.locationName, longitude: location.longitude, latitude: location.latitude, coordinate: locationCoordinates, hatches: location.hatches ?? [], species: location.species, waterflowURL: location.waterflowURL ?? "", hotness: location.hotness ?? "Unknown", image: image)
-            if let locationAnnotationIndex = annotations.index(where: {$0.coordinate == location.coordinate}) {
-                annotations.remove(at: locationAnnotationIndex)
+            let monster = MythicalMonster(name: monster.name, longitude: monster.longitude, latitude: monster.latitude, coordinate: monster.coordinate, origin: monster.origin, monsterDescription: monster.monsterDescription, type: monster.type, webLink: monster.webLink, monsterImage: monster.monsterImage)
+            
+            if let monsterAnnotationIndex = annotations.index(where: {$0.coordinate == monster.coordinate}) {
+                annotations.remove(at: monsterAnnotationIndex)
             }
             mapView.removeAnnotations(annotations)
-            mapView.addAnnotation(location)
+            mapView.addAnnotation(monster)
         }
     }
 
+    let regionRadius: CLLocationDistance = 50000
+    func centerMapOn(monster: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(monster.coordinate, regionRadius, regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
 
-    
     func updateSearchResults(for searchController: UISearchController) {
                     MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
                         let monsterName = monster.name
@@ -122,7 +126,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     
     func setupNavBar() {
         
-        self.searchController.searchResultsUpdater = self
+        self.searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         self.searchController.dimsBackgroundDuringPresentation = false
 
         searchController.searchBar.tintColor = UIColor.mmWhiteIce
@@ -131,33 +135,27 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             
             if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
                 if let backgroundview = textfield.subviews.first {
-                    
                    
                     // Background color
-//                    searchController.searchBar.didMoveToSuperview()
                     backgroundview.backgroundColor = UIColor.mmDeepBlue
                     backgroundview.removeFromSuperview()
-                    
                    
                     // Rounded corner
                     backgroundview.layer.borderWidth = 1.0
                    backgroundview.layer.borderColor = UIColor.mmWhiteIce.cgColor
+                    
                     // Rounded corner
                     backgroundview.layer.cornerRadius = 10
                     backgroundview.clipsToBounds = true
                     
                 }
             }
-        
-          
         }
         
-        
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.mmWhiteIce]
-        
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search monsters by name...", attributes: [NSAttributedStringKey.foregroundColor: UIColor.mmWhiteIce])
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.mmWhiteIce]
 
-
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search monsters by name...", attributes: [NSAttributedStringKey.foregroundColor: UIColor.mmWhiteIce])
+//
 
 
 //        searchController.searchBar.searchBarStyle = .minimal
@@ -177,22 +175,32 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     // MARK: - Table view data source
 
    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            if searchController.searchBar.text != "" {
+        if mapTableView.isHidden == true {
+            if navigationItem.searchController?.searchBar.text != ""{
                 return MonstersController.shared.filteredMonsters.count
             } else {
                 return MonstersController.shared.mythicalMonster.count
             }
-
+        }
+//        else if mapTableView.isHidden == false {
+//            if searchBar.text != "" {
+//                return MonstersController.shared.mythicalMonster.count
+//            }
+//        }
+        return 0
     }
+
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if mapView.isHidden == true {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath) as? MonsterTableViewCell else { return UITableViewCell() }
         
         cell.link = self
@@ -206,7 +214,21 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         }
         
         return cell
+        } else {
+            return UITableViewCell()
+        }
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        mapTableView.isHidden = true
+//        guard let indexPath = mapTableView.indexPathForSelectedRow else { return }
+//        let city = CityController.shared.cities[indexPath.row]
+//        let cityLocation = CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon)
+//        mapView.centerCoordinate = cityLocation
+//        let regionRadius: CLLocationDistance = 100000
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(cityLocation, regionRadius, regionRadius)
+//        mapView.setRegion(coordinateRegion, animated: true)
+//    }
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -224,6 +246,40 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         }
     }
  
+}
+// MARK: - MKMapViewDelegate
 
-   
+// This is what we use to edit our annotations (bubbles) on the map...
+extension MythicalMonsterListTableViewController: MKMapViewDelegate {
+    // 1
+    
+    // The MapView's cellForRowAt
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 2
+        let annotation = annotation as? MythicalMonster
+        // 3
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        // 4
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            // 5
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            view.markerTintColor = UIColor.mmDeepBlue
+            
+            view.glyphText = "🐟"
+        }
+        // ✪⚑⚐🐟
+        return view
+    }
+    
+//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        performSegue(withIdentifier: "fromPinToDetail", sender: view)
+//    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class AddMonsterViewController: UIViewController {
 
@@ -17,6 +18,8 @@ class AddMonsterViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var regionTextField: UITextField!
     @IBOutlet weak var webLinkTextField: UITextField!
+    @IBOutlet weak var longitudeTextField: UITextField!
+    @IBOutlet weak var latitudeTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     
     
@@ -36,6 +39,8 @@ class AddMonsterViewController: UIViewController {
         originTextField.delegate = self
         regionTextField.delegate = self
         webLinkTextField.delegate = self
+        longitudeTextField.delegate = self
+        latitudeTextField.delegate = self
         descriptionTextView.delegate = self
         
         monsterNameTextField.autocapitalizationType = .words
@@ -57,6 +62,12 @@ class AddMonsterViewController: UIViewController {
         textFieldDidBeginEditing(webLinkTextField)
         textFieldDidEndEditing(webLinkTextField)
         
+        textFieldDidBeginEditing(longitudeTextField)
+        textFieldDidEndEditing(longitudeTextField)
+        
+        textFieldDidBeginEditing(latitudeTextField)
+        textFieldDidEndEditing(latitudeTextField)
+        
         scrollViewDidScroll(scrollView)
         scrollView.isDirectionalLockEnabled = true
         
@@ -73,7 +84,7 @@ class AddMonsterViewController: UIViewController {
     }
     
     @IBAction func saveMonsterButtonTapped(_ sender: UIBarButtonItem) {
-        if (monsterNameTextField.text?.isEmpty)! || (originTextField.text?.isEmpty)! || (descriptionTextView.text?.isEmpty)! || (regionTextField.text?.isEmpty)! || (webLinkTextField.text?.isEmpty)! || monsterNameTextField.text  == "Name..." || originTextField.text == "Origin..." || regionTextField.text == "Type..." || webLinkTextField.text == "WebLink..." || descriptionTextView.text == "Monster description..." {
+        if (monsterNameTextField.text?.isEmpty)! || (originTextField.text?.isEmpty)! || (latitudeTextField.text?.isEmpty)! || (longitudeTextField.text?.isEmpty)! || (descriptionTextView.text?.isEmpty)! || (regionTextField.text?.isEmpty)! || (webLinkTextField.text?.isEmpty)! || monsterNameTextField.text  == "Name..." || longitudeTextField.text == "Longitude..." || latitudeTextField.text == "Latitude..." || originTextField.text == "Origin..." || regionTextField.text == "Type..." || webLinkTextField.text == "WebLink..." || descriptionTextView.text == "Monster description..." {
             //display alert message
             DispatchQueue.main.async {
                 self.presentSimpleAlert(title: "oops", message: "all textfields required")
@@ -84,13 +95,18 @@ class AddMonsterViewController: UIViewController {
         guard let image = monsterImageView.image else { return }
         guard let imageData = UIImageJPEGRepresentation(image, 0.01) else { return }
         guard let monsterName = monsterNameTextField.text else { return }
+        guard let longitude = longitudeTextField.text else { return }
+        guard let latitude = latitudeTextField.text else { return }
         guard let origin = originTextField.text else { return }
         guard let description = descriptionTextView.text else { return }
         guard let type = regionTextField.text else { return }
         guard let webLink = webLinkTextField.text else { return }
+        guard let lat = Double(latitude),
+            let lon = Double(longitude) else { return }
+        let locationCoordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
         
-        MonstersController.shared.createMonster(monsterImage: image, name: monsterName, origin: origin, description: description, type: type, webLink: webLink)
+        MonstersController.shared.createMonster(monsterImage: image, name: monsterName, longitude: longitude, latitude: latitude, coordinate: locationCoordinates, origin: origin, description: description, type: type, webLink: webLink)
         
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: "Success", message: "Monster Added!", preferredStyle: .alert)
@@ -183,6 +199,14 @@ extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {
         if (webLinkTextField.text?.isEmpty)! {
             webLinkTextField.text = "WebLink..."
             webLinkTextField.textColor = UIColor.mmWhiteIce
+        }
+        if (longitudeTextField.text?.isEmpty)! {
+            longitudeTextField.text = "Longitude..."
+            longitudeTextField.textColor = UIColor.mmWhiteIce
+        }
+        if (latitudeTextField.text?.isEmpty)! {
+            latitudeTextField.text = "Latitude..."
+            latitudeTextField.textColor = UIColor.mmWhiteIce
         }
     }
     // Texfields can only be numbers for the number sections
