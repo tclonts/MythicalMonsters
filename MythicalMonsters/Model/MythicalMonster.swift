@@ -49,7 +49,7 @@ class MythicalMonster: NSObject, MKAnnotation{
     }
     
     // Initializer
-    init(name: String, longitude: String, latitude: String, coordinate: CLLocationCoordinate2D, origin: String, monsterDescription: String, type: String, webLink: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "MysticalMonstersLogo-1"))) {
+    init(name: String, longitude: String, latitude: String, coordinate: CLLocationCoordinate2D, origin: String, monsterDescription: String, type: String, webLink: String, monsterImage: Data? = UIImagePNGRepresentation(#imageLiteral(resourceName: "WolfPaths"))) {
         self.name = name
         self.longitude = longitude
         self.latitude = latitude

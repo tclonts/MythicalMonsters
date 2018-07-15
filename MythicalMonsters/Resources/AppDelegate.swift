@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return self.orientationLock
     }
 
+    
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         

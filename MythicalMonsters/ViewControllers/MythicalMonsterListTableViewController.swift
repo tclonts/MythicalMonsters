@@ -25,7 +25,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     
         tableView.delegate = self
         tableView.dataSource = self
-        mapView.delegate = self as! MKMapViewDelegate
+        mapView.delegate = self
         mapTableView.delegate = self
         mapTableView.dataSource = self
         self.mapTableView.isHidden = true
@@ -36,6 +36,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
         
         self.view.backgroundColor = UIColor.mmDarkBrown
+        
     }
     
     // MARK: -Properties
@@ -47,14 +48,13 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         if (isFlip == true) {
             mapView.isHidden = true
-
-            navigationItem.searchController?.searchBar.placeholder = "Region"
             self.mapButton.image = UIImage(named: "listIcon")
+            navigationItem.searchController?.searchBar.placeholder = "Region"
 //            self.mapButton.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
 //            self.searchBar.placeholder = "Search by region name..."
             populateMapView()
             let regionRadius: CLLocationDistance = 500000
-            let utahLocation = CLLocationCoordinate2D(latitude: 39.4759385, longitude: -111.54658374)
+            let utahLocation = CLLocationCoordinate2D(latitude: 26.8206, longitude: 30.8025)
             let coordinateRegion = MKCoordinateRegionMakeWithDistance(utahLocation, regionRadius, regionRadius)
             mapView.setRegion(coordinateRegion, animated: true)
         } else {
@@ -200,7 +200,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if mapView.isHidden == true {
+        if mapTableView.isHidden == true {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath) as? MonsterTableViewCell else { return UITableViewCell() }
         
         cell.link = self
@@ -268,18 +268,18 @@ extension MythicalMonsterListTableViewController: MKMapViewDelegate {
         } else {
             // 5
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
+            view.canShowCallout = false
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             view.markerTintColor = UIColor.mmDeepBlue
             
-            view.glyphText = "🐟"
+//            view.glyphText = 
         }
-        // ✪⚑⚐🐟
+//         ✪⚑⚐🐟
         return view
     }
     
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        performSegue(withIdentifier: "fromPinToDetail", sender: view)
-//    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        performSegue(withIdentifier: "fromPinToDetail", sender: view)
+    }
 }

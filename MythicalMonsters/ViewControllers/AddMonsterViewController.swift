@@ -210,14 +210,14 @@ extension AddMonsterViewController: UITextViewDelegate, UITextFieldDelegate {
         }
     }
     // Texfields can only be numbers for the number sections
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let characterSet = CharacterSet.letters
-        
-        if string.rangeOfCharacter(from: characterSet.inverted) != nil {
-            return false
-        }
-        return true
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        
+//        let characterSet = CharacterSet.letters
+//        
+//        if string.rangeOfCharacter(from: characterSet.inverted) != nil {
+//            return false
+//        }
+//        return true
+//    }
 }
 
