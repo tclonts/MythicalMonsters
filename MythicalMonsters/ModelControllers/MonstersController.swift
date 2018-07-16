@@ -32,7 +32,7 @@ class MonstersController {
     
     // Create
     
-    func createMonster(monsterImage: UIImage?, name: String, longitude: String, latitude: String, coordinate: CLLocationCoordinate2D, origin: String, description: String, type: String, webLink: String) {
+    func createMonster(monsterImage: UIImage?, name: String, longitude: String, latitude: String, coordinate: CLLocationCoordinate2D, origin: String, description: String, type: String, webLink: String,  completion: @escaping(_ success: Bool) -> Void) {
         guard let monsterImage = monsterImage else { return }
         guard let data = UIImageJPEGRepresentation(monsterImage, 0.8) else { return }
         
@@ -43,6 +43,8 @@ class MonstersController {
         let newMonster = MythicalMonster(name: name, longitude: longitude, latitude: latitude, coordinate: locationCoordinates, origin: origin, monsterDescription: description, type: type, webLink: webLink, monsterImage: data)
         mythicalMonster.append(newMonster)
         saveToPersistentStore()
+        completion(true)
+        
     }
 
     // Delete

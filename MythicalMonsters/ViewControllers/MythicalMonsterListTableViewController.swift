@@ -22,7 +22,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         tableView.delegate = self
         tableView.dataSource = self
         mapView.delegate = self
@@ -48,7 +48,10 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
         if (isFlip == true) {
             mapView.isHidden = true
-            self.mapButton.image = UIImage(named: "listIcon")
+            if let image = UIImage(named: "listIcon") {
+                mapButton.image = image
+            }
+//            self.mapButton.image = UIImage(named: "listIcon")
             navigationItem.searchController?.searchBar.placeholder = "Region"
 //            self.mapButton.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
 //            self.searchBar.placeholder = "Search by region name..."
@@ -60,7 +63,11 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         } else {
             mapView.isHidden = false
             navigationItem.searchController?.searchBar.placeholder = "Monster"
-            self.mapButton.image = UIImage(named: "mapIcon")
+            
+            if let image = UIImage(named: "mapIcon") {
+                mapButton.image = image
+            }
+//            self.mapButton.image = UIImage(named: "mapIcon")
 
 //            self.mapButton.setImage(UIImage(named: "mapIcon"), for: .normal)
 //            self.searchBar.placeholder = "Search by monster name..."

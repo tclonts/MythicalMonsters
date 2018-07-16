@@ -21,8 +21,8 @@ extension CLLocationCoordinate2D: Equatable {
 class MythicalMonster: NSObject, MKAnnotation{
     
     // Coding Keys
-    static let typeKey = "MythicalMonsters"
-    private let longitudeKey = "longitutde"
+    static let typeKey = "Monsters"
+    private let longitudeKey = "longitude"
     private let latitudeKey = "latitude"
     private let nameKey = "name"
     private let originKey = "origin"

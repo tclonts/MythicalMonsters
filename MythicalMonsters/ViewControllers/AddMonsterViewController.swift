@@ -106,7 +106,7 @@ class AddMonsterViewController: UIViewController {
         let locationCoordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         
         
-        MonstersController.shared.createMonster(monsterImage: image, name: monsterName, longitude: longitude, latitude: latitude, coordinate: locationCoordinates, origin: origin, description: description, type: type, webLink: webLink)
+        MonstersController.shared.createMonster(monsterImage: image, name: monsterName, longitude: longitude, latitude: latitude, coordinate: locationCoordinates, origin: origin, description: description, type: type, webLink: webLink) { (true)  in
         
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: "Success", message: "Monster Added!", preferredStyle: .alert)
@@ -118,6 +118,7 @@ class AddMonsterViewController: UIViewController {
             alertController.addAction(okAction)
             self.present(alertController, animated: true, completion: nil)
             print("Success Saving")
+            }
         }
     }
     
