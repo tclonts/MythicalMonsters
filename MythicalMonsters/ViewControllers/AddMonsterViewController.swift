@@ -21,6 +21,7 @@ class AddMonsterViewController: UIViewController {
     @IBOutlet weak var longitudeTextField: UITextField!
     @IBOutlet weak var latitudeTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var addMonsterLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -32,8 +33,6 @@ class AddMonsterViewController: UIViewController {
         descriptionTextView.layer.borderColor = UIColor.mmKhaki.cgColor
         descriptionTextView.layer.borderWidth = 2.0
         scrollView.backgroundColor = UIColor.mmDarkGray
-        
-    
         
         monsterNameTextField.delegate = self
         originTextField.delegate = self
@@ -70,6 +69,7 @@ class AddMonsterViewController: UIViewController {
         
         scrollViewDidScroll(scrollView)
         scrollView.isDirectionalLockEnabled = true
+        
         
     }
     

@@ -161,13 +161,21 @@
                                     <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFN-8w-ZHa">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         <subviews>
-                                            <imageView contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="WolfPaths" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-yj-LBi">
+                                            <imageView contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" image="AddMonster" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-yj-LBi">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="hOK-8h-136" appends="YES" id="gXT-DY-nOF"/>
                                                 </connections>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Monster Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvA-Th-xK2">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                <fontDescription key="fontDescription" name="SFCompactText-Regular" family="SF Compact Text" pointSize="30"/>
+                                                <color key="textColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -286,6 +294,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addMonsterLabel" destination="QvA-Th-xK2" id="VKy-KT-Yb0"/>
                         <outlet property="descriptionTextView" destination="Ins-py-qGS" id="wJP-Po-wxN"/>
                         <outlet property="latitudeTextField" destination="gR7-F8-ODb" id="jYM-Qd-Iqf"/>
                         <outlet property="longitudeTextField" destination="Si1-Me-wyH" id="UkZ-5F-b8f"/>
@@ -305,7 +314,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2113" y="-974"/>
+            <point key="canvasLocation" x="2112.8000000000002" y="-974.6626686656673"/>
         </scene>
         <!--Monster Detail View Controller-->
         <scene sceneID="tTq-aI-pfW">
@@ -476,8 +485,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddMonster" width="240" height="186"/>
         <image name="WebLink" width="20" height="20"/>
-        <image name="WolfPaths" width="160" height="89"/>
         <image name="mapIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

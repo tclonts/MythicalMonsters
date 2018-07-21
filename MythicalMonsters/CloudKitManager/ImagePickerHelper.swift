@@ -58,6 +58,7 @@ extension AddMonsterViewController: UIImagePickerControllerDelegate, UINavigatio
         }
         
         present(alert, animated: true, completion: nil)
+       
     }
     // This looks cleaner but I cant get it to work.
     
@@ -82,6 +83,7 @@ extension AddMonsterViewController: UIImagePickerControllerDelegate, UINavigatio
                     //                        self.recipes?.recipeImage = uploadData
                     self.monsterImageView.contentMode = .scaleAspectFill
                     self.monsterImageView.image = chosenImage
+                    self.addMonsterLabel.isHidden = true
                 }
             }
             //                self.dismiss(animated: true, completion: nil)
