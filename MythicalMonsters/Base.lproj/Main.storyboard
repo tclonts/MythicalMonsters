@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -123,16 +124,18 @@
                         <viewLayoutGuide key="safeArea" id="RU6-UL-ipY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="auV-9Y-ZnJ" userLabel="Navigation Item">
-                        <barButtonItem key="leftBarButtonItem" image="mapIcon" id="b2T-Qj-mjO">
-                            <connections>
-                                <action selector="mapButtonTapped:" destination="PbD-uN-bus" id="Y8p-UL-jsG"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="z1P-Dp-nh8">
-                            <connections>
-                                <segue destination="5f2-Ky-Je0" kind="show" id="Ndh-0u-n0o"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="z1P-Dp-nh8">
+                                <connections>
+                                    <segue destination="5f2-Ky-Je0" kind="show" id="Ndh-0u-n0o"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="mapIcon" id="b2T-Qj-mjO">
+                                <connections>
+                                    <action selector="mapButtonTapped:" destination="PbD-uN-bus" id="Y8p-UL-jsG"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="z1P-Dp-nh8" id="cSA-ZH-uOk"/>
@@ -304,10 +307,11 @@
                         <outlet property="regionTextField" destination="nDb-Ht-hRs" id="BL4-d7-lat"/>
                         <outlet property="scrollView" destination="upf-2C-QtP" id="Cbn-rm-K2D"/>
                         <outlet property="webLinkTextField" destination="dl5-oe-NR6" id="C5V-JF-r4P"/>
-                        <segue destination="JvD-bQ-fH0" kind="showDetail" identifier="backToTV" id="JXk-Ic-8Rj"/>
+                        <segue destination="52j-Jw-3ZK" kind="unwind" identifier="trp" unwindAction="unwindToMainMenuWithSender:" id="oBr-CY-pbA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QxI-2R-Ylr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="52j-Jw-3ZK" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="hOK-8h-136">
                     <connections>
                         <action selector="monsterImagePIckerTapped:" destination="5f2-Ky-Je0" id="QB8-Bc-TMb"/>
@@ -490,6 +494,6 @@
         <image name="mapIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mbd-Me-DYK"/>
+        <segue reference="6rB-ap-WpZ"/>
     </inferredMetricsTieBreakers>
 </document>

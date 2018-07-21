@@ -29,7 +29,6 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         mapTableView.delegate = self
         mapTableView.dataSource = self
         self.mapTableView.isHidden = true
-        
 //        addButton.tintColor = .clear
         definesPresentationContext = true
         setupNavBar()
@@ -39,6 +38,10 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         self.view.backgroundColor = UIColor.mmDarkBrown
         
         tableView.backgroundColor = UIColor.mmDarkBrown
+    }
+    
+    @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
+    {
     }
     
     // MARK: -Properties
@@ -53,10 +56,14 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             if let image = UIImage(named: "listIcon") {
                 mapButton.image = image
             }
-//            self.mapButton.image = UIImage(named: "listIcon")
-            navigationItem.searchController?.searchBar.placeholder = "Search region by name"
-//            self.mapButton.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
-//            self.searchBar.placeholder = "Search by region name..."
+            navigationItem.searchController?.searchBar.placeholder = "Search region by name..."
+            
+            let textFieldInsideSearchBar = navigationItem.searchController?.searchBar.value(forKey: "searchField") as? UITextField
+            textFieldInsideSearchBar?.textColor = UIColor.mmWhiteIce
+            
+            let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
+            textFieldInsideSearchBarLabel?.textColor = UIColor.mmWhiteIce
+            
             populateMapView()
             let regionRadius: CLLocationDistance = 500000
 //            let utahLocation = CLLocationCoordinate2D(latitude: 26.8206, longitude: 30.8025)
@@ -64,15 +71,17 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
 //            mapView.setRegion(coordinateRegion, animated: true)
         } else {
             mapView.isHidden = false
-            navigationItem.searchController?.searchBar.placeholder = "Search monster by name"
+            navigationItem.searchController?.searchBar.placeholder = "Search monster by name..."
+            
+            let textFieldInsideSearchBar = navigationItem.searchController?.searchBar.value(forKey: "searchField") as? UITextField
+            textFieldInsideSearchBar?.textColor = UIColor.mmWhiteIce
+            
+            let textFieldInsideSearchBarLabel = textFieldInsideSearchBar!.value(forKey: "placeholderLabel") as? UILabel
+            textFieldInsideSearchBarLabel?.textColor = UIColor.mmWhiteIce
             
             if let image = UIImage(named: "mapIcon") {
                 mapButton.image = image
             }
-//            self.mapButton.image = UIImage(named: "mapIcon")
-
-//            self.mapButton.setImage(UIImage(named: "mapIcon"), for: .normal)
-//            self.searchBar.placeholder = "Search by monster name..."
         }
         
         UIView.transition(from: isFlip ? tableView : mapView,
@@ -286,9 +295,9 @@ extension MythicalMonsterListTableViewController: MKMapViewDelegate {
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .infoDark)
-            view.markerTintColor = UIColor.mmKhaki
+            view.markerTintColor = UIColor.mmWhiteIce
 
-            view.glyphText = "🐍"        }
+            view.glyphText = "🐺"        }
 //         ✪⚑⚐🐟
         return view
 

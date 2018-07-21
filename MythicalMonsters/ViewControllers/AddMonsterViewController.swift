@@ -112,7 +112,7 @@ class AddMonsterViewController: UIViewController {
             let alertController = UIAlertController(title: "Success", message: "Monster Added!", preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-                self.performSegue(withIdentifier: "backToTV", sender: self)
+                self.performSegue(withIdentifier: "trp", sender: self)
             }
             
             alertController.addAction(okAction)
