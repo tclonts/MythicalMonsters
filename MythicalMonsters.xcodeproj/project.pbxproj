@@ -202,8 +202,8 @@
 			children = (
 				BE5DC4F120C20AB400BE617A /* MythicalMonsterListTableViewController.swift */,
 				BE2070E120C88FB2008B4A91 /* AddMonsterViewController.swift */,
-				BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */,
 				BE2272BF20D2D4190020164D /* MonsterDetailViewController.swift */,
+				BECEAEE920D0BB8B00C8EF21 /* MonsterTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

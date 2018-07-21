@@ -24,11 +24,11 @@ class MonsterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        setupLogo()
+        
         self.view.backgroundColor = UIColor.mmDarkBrown
         nameLabel.textColor = UIColor.mmWhiteIce
-        
         originLabel.textColor = UIColor.mmWhiteIce
-
         regionLabel.textColor = UIColor.mmWhiteIce
         
         descriptionTextView.backgroundColor = UIColor.mmDarkGray
@@ -40,9 +40,11 @@ class MonsterDetailViewController: UIViewController {
         contentViewTwo.backgroundColor = UIColor.mmDarkBrown
         contentView.backgroundColor = UIColor.mmDarkGray
         
-        setupLogo()
-        
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
     }
 
     var monster: MythicalMonster?
@@ -51,7 +53,7 @@ class MonsterDetailViewController: UIViewController {
         //create a new button
         let button = UIButton.init(type: .custom)
         //set image for button
-        button.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
+        button.setImage(UIImage(named: "MML"), for: .normal)
         //set frame
         button.frame = CGRect(x: -10, y: 0, width: 53, height: 51)
         let barButton = UIBarButtonItem(customView: button)
@@ -69,15 +71,16 @@ class MonsterDetailViewController: UIViewController {
         })
     }
     
-    private func updateViews() {
+    func updateViews() {
         guard let monster = monster else { return }
         
-        guard let monsterImage = UIImage(data: monster.monsterImage!) else { return }
-        monsterImageView.image = monsterImage
+//        guard let monsterImage = UIImage(data: monster.monsterImage!) else { return }
+        monsterImageView.image = monster.photo
+//        monsterImageView.image = monsterImage
         nameLabel.text = monster.name
         originLabel.text = monster.origin
         regionLabel.text = monster.type
-        descriptionTextView.text = monster.description
+        descriptionTextView.text = monster.monsterDescription
     }
 
 

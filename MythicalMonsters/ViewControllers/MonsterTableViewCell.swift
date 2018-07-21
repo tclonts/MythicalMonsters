@@ -41,6 +41,7 @@ class MonsterTableViewCell: UITableViewCell {
 
         
         view.backgroundColor = UIColor.mmDarkBrown.withAlphaComponent(0.8)
+        
     }
 
 //    let color = self.myLabel.backgroundColor

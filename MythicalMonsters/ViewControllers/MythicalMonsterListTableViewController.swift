@@ -35,8 +35,10 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
         
+        
         self.view.backgroundColor = UIColor.mmDarkBrown
         
+        tableView.backgroundColor = UIColor.mmDarkBrown
     }
     
     // MARK: -Properties
@@ -52,17 +54,17 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
                 mapButton.image = image
             }
 //            self.mapButton.image = UIImage(named: "listIcon")
-            navigationItem.searchController?.searchBar.placeholder = "Region"
+            navigationItem.searchController?.searchBar.placeholder = "Search region by name"
 //            self.mapButton.setImage(UIImage(named: "MonsterIcon3"), for: .normal)
 //            self.searchBar.placeholder = "Search by region name..."
             populateMapView()
             let regionRadius: CLLocationDistance = 500000
-            let utahLocation = CLLocationCoordinate2D(latitude: 26.8206, longitude: 30.8025)
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(utahLocation, regionRadius, regionRadius)
-            mapView.setRegion(coordinateRegion, animated: true)
+//            let utahLocation = CLLocationCoordinate2D(latitude: 26.8206, longitude: 30.8025)
+//            let coordinateRegion = MKCoordinateRegionMakeWithDistance(utahLocation, regionRadius, regionRadius)
+//            mapView.setRegion(coordinateRegion, animated: true)
         } else {
             mapView.isHidden = false
-            navigationItem.searchController?.searchBar.placeholder = "Monster"
+            navigationItem.searchController?.searchBar.placeholder = "Search monster by name"
             
             if let image = UIImage(named: "mapIcon") {
                 mapButton.image = image
@@ -226,6 +228,8 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         }
     }
     
+// This is the table view for the search during
+    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        mapTableView.isHidden = true
 //        guard let indexPath = mapTableView.indexPathForSelectedRow else { return }
@@ -250,10 +254,14 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
                     detailVC.monster = monster
                 }
             }
+        } else if segue.identifier == "fromPinToDetail" {
+                guard let view = sender as? MKAnnotationView,
+                    let detailVC = segue.destination as? MonsterDetailViewController else { return }
+                let monster = view.annotation as? MythicalMonster
+                detailVC.monster = monster
+            }
         }
     }
- 
-}
 // MARK: - MKMapViewDelegate
 
 // This is what we use to edit our annotations (bubbles) on the map...
@@ -275,18 +283,19 @@ extension MythicalMonsterListTableViewController: MKMapViewDelegate {
         } else {
             // 5
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = false
+            view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            view.markerTintColor = UIColor.mmDeepBlue
-            
-//            view.glyphText = 
-        }
+            view.rightCalloutAccessoryView = UIButton(type: .infoDark)
+            view.markerTintColor = UIColor.mmKhaki
+
+            view.glyphText = "🐍"        }
 //         ✪⚑⚐🐟
         return view
+
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         performSegue(withIdentifier: "fromPinToDetail", sender: view)
     }
+
 }

@@ -38,6 +38,7 @@ class MythicalMonster: NSObject, MKAnnotation{
     let latitude: String
     var coordinate: CLLocationCoordinate2D
     let type: String
+    var title: String?
     let webLink: String
     let monsterDescription: String
     var cloudKitRecordID: CKRecordID?
@@ -55,6 +56,7 @@ class MythicalMonster: NSObject, MKAnnotation{
         self.latitude = latitude
         self.coordinate = coordinate
         self.origin = origin
+        self.title = name
         self.monsterDescription = monsterDescription
         self.type = type
         self.webLink = webLink
@@ -81,6 +83,7 @@ class MythicalMonster: NSObject, MKAnnotation{
         self.longitude = longitudeString
         self.latitude = latitudeString
         self.origin = origin
+        self.title = name
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.monsterDescription = monsterDescription
         self.type = type
