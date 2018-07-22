@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class MythicalMonsterListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UINavigationControllerDelegate {
+class MythicalMonsterListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UINavigationControllerDelegate, UISearchResultsUpdating {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapTableView: UITableView!
@@ -29,15 +29,16 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         mapTableView.delegate = self
         mapTableView.dataSource = self
         self.mapTableView.isHidden = true
-//        addButton.tintColor = .clear
         definesPresentationContext = true
-        setupNavBar()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCVC), name: MonstersController.shared.tableVCReloadNotification, object: nil)
         
         
         self.view.backgroundColor = UIColor.mmDarkBrown
         
         tableView.backgroundColor = UIColor.mmDarkBrown
+        navigationItem.searchController?.searchBar.delegate = self
+        setupNavBar()
+        updateSearchResults(for: searchController)
     }
     
     @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
@@ -132,6 +133,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(monster.coordinate, regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
 
     func updateSearchResults(for searchController: UISearchController) {
                     MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
@@ -143,10 +145,10 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
 
     
     func setupNavBar() {
-        
         self.searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         self.searchController.dimsBackgroundDuringPresentation = false
-
+        definesPresentationContext = true
+        
         searchController.searchBar.tintColor = UIColor.mmWhiteIce
 
         if #available(iOS 11.0, *) {
@@ -173,10 +175,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.mmWhiteIce]
 
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = NSAttributedString(string: "Search monsters by name...", attributes: [NSAttributedStringKey.foregroundColor: UIColor.mmWhiteIce])
-//
 
-
-//        searchController.searchBar.searchBarStyle = .minimal
         navigationItem.searchController = searchController
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -188,11 +187,12 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         navigationController?.navigationBar.tintColor = UIColor.mmWhiteIce
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.mmWhiteIce]
-    
     }
+    
+    
+    
     // MARK: - Table view data source
 
-   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if mapTableView.isHidden == true {
@@ -202,11 +202,11 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
                 return MonstersController.shared.mythicalMonster.count
             }
         }
-//        else if mapTableView.isHidden == false {
-//            if searchBar.text != "" {
-//                return MonstersController.shared.mythicalMonster.count
-//            }
-//        }
+        else if mapTableView.isHidden == false {
+            if navigationItem.searchController?.searchBar.text != "" {
+                return MonstersController.shared.mythicalMonster.count
+            }
+        }
         return 0
     }
 
@@ -222,7 +222,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "monsterCell", for: indexPath) as? MonsterTableViewCell else { return UITableViewCell() }
         
         cell.link = self
-        if searchController.searchBar.text != "" {
+        if navigationItem.searchController?.searchBar.text != "" {
             let filteredMonsters = MonstersController.shared.filteredMonsters[indexPath.row]
             cell.monster = filteredMonsters
         } else {
@@ -236,6 +236,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             return UITableViewCell()
         }
     }
+
     
 // This is the table view for the search during
     
