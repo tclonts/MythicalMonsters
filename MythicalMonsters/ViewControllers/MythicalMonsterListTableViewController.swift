@@ -66,10 +66,10 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             textFieldInsideSearchBarLabel?.textColor = UIColor.mmWhiteIce
             
             populateMapView()
-            let regionRadius: CLLocationDistance = 500000
-//            let utahLocation = CLLocationCoordinate2D(latitude: 26.8206, longitude: 30.8025)
-//            let coordinateRegion = MKCoordinateRegionMakeWithDistance(utahLocation, regionRadius, regionRadius)
-//            mapView.setRegion(coordinateRegion, animated: true)
+            let regionRadius: CLLocationDistance = 5000000
+            let utahLocation = CLLocationCoordinate2D(latitude: 28.0, longitude: 30.0)
+            let coordinateRegion = MKCoordinateRegionMakeWithDistance(utahLocation, regionRadius, regionRadius)
+            mapView.setRegion(coordinateRegion, animated: true)
         } else {
             mapView.isHidden = false
             navigationItem.searchController?.searchBar.placeholder = "Search monster by name..."
@@ -296,9 +296,9 @@ extension MythicalMonsterListTableViewController: MKMapViewDelegate {
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .infoDark)
-            view.markerTintColor = UIColor.mmWhiteIce
+            view.markerTintColor = UIColor.mmDeepBlue
 
-            view.glyphText = "🐺"        }
+            view.glyphImage = #imageLiteral(resourceName: "MML")     }
 //         ✪⚑⚐🐟
         return view
 
