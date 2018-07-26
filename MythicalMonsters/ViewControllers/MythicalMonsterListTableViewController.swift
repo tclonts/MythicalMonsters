@@ -11,7 +11,7 @@ import MapKit
 
 
 class MythicalMonsterListTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate, UINavigationControllerDelegate, UISearchResultsUpdating {
-    
+ 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapTableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
@@ -23,6 +23,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addButton.isEnabled = false
         tableView.delegate = self
         tableView.dataSource = self
         mapView.delegate = self
@@ -52,11 +53,15 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     
     
     @IBAction func mapButtonTapped(_ sender: UIBarButtonItem) {
+        navigationItem.searchController?.searchBar.text = ""
+
         if (isFlip == true) {
+            
             mapView.isHidden = true
             if let image = UIImage(named: "listIcon") {
                 mapButton.image = image
             }
+//            navigationItem.searchController?.searchBar.isHidden = true
             navigationItem.searchController?.searchBar.placeholder = "Search region by name..."
             
             let textFieldInsideSearchBar = navigationItem.searchController?.searchBar.value(forKey: "searchField") as? UITextField
@@ -72,6 +77,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             mapView.setRegion(coordinateRegion, animated: true)
         } else {
             mapView.isHidden = false
+            navigationItem.searchController?.searchBar.isHidden = false
             navigationItem.searchController?.searchBar.placeholder = "Search monster by name..."
             
             let textFieldInsideSearchBar = navigationItem.searchController?.searchBar.value(forKey: "searchField") as? UITextField
@@ -136,6 +142,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
     
 
     func updateSearchResults(for searchController: UISearchController) {
+        
                     MonstersController.shared.filteredMonsters = MonstersController.shared.mythicalMonster.filter{ monster in
                         let monsterName = monster.name
                         return (monsterName.lowercased().contains(searchController.searchBar.text!.lowercased()))
@@ -148,6 +155,7 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
         self.searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         self.searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
+        searchController.searchBar.delegate = self
         
         searchController.searchBar.tintColor = UIColor.mmWhiteIce
 
@@ -236,19 +244,116 @@ class MythicalMonsterListTableViewController: UIViewController, UITableViewDeleg
             return UITableViewCell()
         }
     }
+    
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if mapView.isHidden == false {
+        //Ignoring user
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        //Activity Indicator
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        self.view.addSubview(activityIndicator)
+        
+        //Hide search bar
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        //Create the search request
+        let searchRequest = MKLocalSearchRequest()
+        searchRequest.naturalLanguageQuery = searchBar.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        
+        activeSearch.start { (response, error) in
+            
+            activityIndicator.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            if response == nil
+            {
+                print("ERROR")
+            }
+            else
+            {
+                //Remove annotations
+                let annotations = self.mapView.annotations
+//                self.mapView.removeAnnotations(annotations)
+                
+                //Getting data
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                //Create annotation
+                let annotation = MKPointAnnotation()
+                annotation.title = searchBar.text
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                
+                self.mapView.addAnnotation(annotation)
+                
+                
+                
+                //Zooming in on annotation
+                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpanMake(0.1, 0.1)
+                let region = MKCoordinateRegionMake(coordinate, span)
+                self.mapView.setRegion(region, animated: true)
+            }
+            }
+        }
+    }
 
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+//
+//        let geocoder = CLGeocoder()
+//
+//        geocoder.geocodeAddressString(searchController.searchBar.text!) { (placemarks: [CLPlacemark]?, error: Error?) in
+//            if error == nil {
+//
+//                let placemark = placemarks?.first
+//                let annotation = MKPointAnnotation()
+//                annotation.coordinate = (placemark?.location?.coordinate)!
+//                annotation.title = self.searchController.searchBar.text
+//
+//                self.mapView.addAnnotation(annotation)
+//                self.mapView.selectAnnotation(annotation, animated: true)
+//
+//
+//            }else {
+//                print(error?.localizedDescription ?? "Error")
+//            }
+//        }
+//    }
     
 // This is the table view for the search during
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        mapTableView.isHidden = true
-//        guard let indexPath = mapTableView.indexPathForSelectedRow else { return }
-//        let city = CityController.shared.cities[indexPath.row]
-//        let cityLocation = CLLocationCoordinate2D(latitude: city.lat, longitude: city.lon)
-//        mapView.centerCoordinate = cityLocation
-//        let regionRadius: CLLocationDistance = 100000
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(cityLocation, regionRadius, regionRadius)
-//        mapView.setRegion(coordinateRegion, animated: true)
+//        let geocoder = CLGeocoder()
+//
+//        geocoder.geocodeAddressString(searchController.searchBar.text!) { (placemarks: [CLPlacemark]?, error: Error?) in
+//            if error == nil {
+//
+//                let placemark = placemarks?.first
+//                let annotation = MKPointAnnotation()
+//                annotation.coordinate = (placemark?.location?.coordinate)!
+//                annotation.title = self.searchController.searchBar.text
+//
+//                self.mapView.addAnnotation(annotation)
+//                self.mapView.selectAnnotation(annotation, animated: true)
+//
+//
+//            }else {
+//                print(error?.localizedDescription ?? "Error")
+//            }
+//        }
 //    }
     
 
@@ -282,6 +387,7 @@ extension MythicalMonsterListTableViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 2
         let annotation = annotation as? MythicalMonster
+        
         // 3
         let identifier = "marker"
         var view: MKMarkerAnnotationView
@@ -290,15 +396,32 @@ extension MythicalMonsterListTableViewController: MKMapViewDelegate {
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
-        } else {
-            // 5
+        } else if searchController.searchBar.text == "" || searchController.searchBar.text == annotation?.title {
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.rightCalloutAccessoryView = UIButton(type: .infoDark)
             view.markerTintColor = UIColor.mmDeepBlue
 
-            view.glyphImage = #imageLiteral(resourceName: "MML")     }
+            view.glyphImage = #imageLiteral(resourceName: "MML")
+
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .infoDark)
+            view.markerTintColor = UIColor.mmWhiteIce
+            view.glyphText = "📍"
+
+        }
+//        else {
+//            // 5
+//            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.calloutOffset = CGPoint(x: -5, y: 5)
+//            view.rightCalloutAccessoryView = UIButton(type: .infoDark)
+//            view.markerTintColor = UIColor.mmDeepBlue
+//
+//            view.glyphImage = #imageLiteral(resourceName: "MML")     }
 //         ✪⚑⚐🐟
         return view
 

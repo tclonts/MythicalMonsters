@@ -44,10 +44,7 @@ class MonsterTableViewCell: UITableViewCell {
         
     }
 
-//    let color = self.myLabel.backgroundColor
-//    super.setSelected(selected, animated: animated)
-//    self.myLabel.backgroundColor = color
-//
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         let color = self.view.backgroundColor
         super.setSelected(selected, animated: animated)
